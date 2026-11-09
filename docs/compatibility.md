@@ -30,11 +30,12 @@ with `codex debug prompt-input`.
 ## Files each tool reads
 
 - **Claude Code** loads `SKILL.md`. As a plugin it also reads
-  `.claude-plugin/plugin.json`.
+  `.claude-plugin/plugin.json`, whose `icon` points to `assets/icon.png`.
 - **OpenCode** scans its skill folders and stops descending once it finds a
   `SKILL.md`, so `agents/` is never registered as a skill. Folders whose names
   start with a dot are skipped.
-- **Codex** loads `SKILL.md` and `agents/openai.yaml`.
+- **Codex** loads `SKILL.md` and `agents/openai.yaml`, which also sets the
+  icons from `assets/`.
 
 `evals/`, `docs/`, and the repository files sit outside the skill folder and
 are never installed.

@@ -21,6 +21,8 @@ Initial public release.
   outward-facing actions, and secrets are redacted in the preview.
 - Support for Claude Code (plugin and manual install), OpenCode, and Codex
   (`agents/openai.yaml` keeps it explicit-only).
+- Icon (SVG source and 1024 px PNG), used by the Claude Code plugin, Codex,
+  and the README.
 - Eval suite of 24 generated cases with regex, tool-use, and LLM graders, and a
   generator that refuses to overwrite case directories without `--force`.
 - CI for skill metadata, generated-eval drift, Markdown, links, and secrets,

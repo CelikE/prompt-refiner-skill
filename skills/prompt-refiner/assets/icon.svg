@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>prompt-refiner</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5B4FE0"/>
+      <stop offset="1" stop-color="#1E9FC4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <!-- prompt chevron -->
+    <polyline points="214,404 316,512 214,620" stroke-width="64"/>
+    <!-- rough input: a wavy line -->
+    <path d="M412 382 q 32 -46 64 0 t 64 0 t 64 0 t 64 0 t 64 0 t 64 0" stroke-width="44" stroke-opacity="0.5"/>
+    <!-- refined output: clean lines -->
+    <line x1="412" y1="512" x2="796" y2="512" stroke-width="48"/>
+    <line x1="412" y1="642" x2="668" y2="642" stroke-width="48"/>
+  </g>
+  <!-- sparkle: the refined result -->
+  <path d="M790 566 C 800 624 812 634 866 642 C 812 650 800 660 790 718 C 780 660 768 650 714 642 C 768 634 780 624 790 566 Z" fill="#FFD66B"/>
+</svg>

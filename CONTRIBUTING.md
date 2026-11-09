@@ -16,7 +16,8 @@ need no new case, but the existing suite must still pass.
 | Path | Purpose |
 |---|---|
 | `skills/prompt-refiner/SKILL.md` | The skill. The only file the model reads. |
-| `skills/prompt-refiner/agents/openai.yaml` | Codex policy (explicit-only). |
+| `skills/prompt-refiner/agents/openai.yaml` | Codex policy (explicit-only) and icons. |
+| `skills/prompt-refiner/assets/` | Icon: `icon.svg` is the source, `icon.png` is rendered from it. |
 | `.claude-plugin/` | Claude Code plugin and marketplace manifests. |
 | `evals/generate.py` | Source of truth for all eval cases. |
 | `evals/<case>/` | Generated. Never edit by hand. |
@@ -74,6 +75,21 @@ Include the eval output (with and without the skill) in your pull request.
 - Keep `SKILL.md` short. Every line is read on every invocation. Prefer
   sharpening an existing rule to adding a new one.
 - Markdown is linted with `markdownlint-cli2` using `.markdownlint-cli2.yaml`.
+
+## Icon
+
+Edit `skills/prompt-refiner/assets/icon.svg`, then render the PNG with any SVG
+renderer at 1024 x 1024 with a transparent background, for example headless
+Chrome:
+
+```sh
+chrome --headless=new --hide-scrollbars --default-background-color=00000000 \
+  --window-size=1024,1024 --screenshot="$PWD/skills/prompt-refiner/assets/icon.png" \
+  "file://$PWD/skills/prompt-refiner/assets/icon.svg"
+```
+
+The plugin directory requires a square PNG of 512 to 2048 px under 2 MB;
+`check_skill.py` checks this. Check the result at 32 px too.
 
 ## Versioning and releases
 

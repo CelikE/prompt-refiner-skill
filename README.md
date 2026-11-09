@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="skills/prompt-refiner/assets/icon.png" width="128" height="128" alt="prompt-refiner icon">
+</p>
+
 # prompt-refiner
 
 [![CI](https://github.com/CelikE/prompt-refiner-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/CelikE/prompt-refiner-skill/actions/workflows/ci.yml)

@@ -1,5 +1,7 @@
 interface:
   display_name: "Prompt Refiner"
   short_description: "Refine a rough request without changing its meaning, then run it"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.png"
 policy:
   allow_implicit_invocation: false

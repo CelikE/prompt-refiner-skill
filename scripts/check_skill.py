@@ -7,6 +7,8 @@ Checks:
     explicit-only settings for Claude Code and OpenCode.
   - Codex policy file keeps the skill explicit-only.
   - The version is identical in SKILL.md, plugin.json, and marketplace.json.
+  - Icons: the plugin icon is a square PNG of 512 to 2048 px under 2 MB, and
+    the Codex icon paths exist.
   - No em dashes or en dashes in authored text files.
   - SKILL.md stays short.
 """
@@ -106,6 +108,29 @@ def check_versions(skill_version):
         fail("version mismatch: " + ", ".join(f"{k}={v!r}" for k, v in versions.items()))
 
 
+def check_icons():
+    """plugin.json icon: square PNG, 512 to 2048 px, under 2 MB. Codex icon paths must exist."""
+    plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    icon = ROOT / plugin.get("icon", "")
+    if not plugin.get("icon") or not icon.is_file():
+        fail(f"plugin.json: icon {plugin.get('icon')!r} not found")
+    else:
+        head = icon.read_bytes()[:24]
+        if head[:8] != b"\x89PNG\r\n\x1a\n":
+            fail(f"{icon.relative_to(ROOT)}: not a PNG")
+        else:
+            w, h = int.from_bytes(head[16:20], "big"), int.from_bytes(head[20:24], "big")
+            if w != h or not 512 <= w <= 2048:
+                fail(f"{icon.relative_to(ROOT)}: {w}x{h}, must be square and 512 to 2048 px")
+        if icon.stat().st_size >= 2 * 1024 * 1024:
+            fail(f"{icon.relative_to(ROOT)}: larger than 2 MB")
+    policy = (SKILL_DIR / "agents" / "openai.yaml")
+    for rel in re.findall(r"^\s*icon_(?:small|large):\s*\"?([^\"\n]+)\"?\s*$",
+                          policy.read_text(encoding="utf-8") if policy.is_file() else "", re.M):
+        if not (SKILL_DIR / rel).is_file():
+            fail(f"agents/openai.yaml: icon path {rel!r} not found")
+
+
 def check_dashes():
     for path in sorted(ROOT.rglob("*")):
         rel = path.relative_to(ROOT)
@@ -120,6 +145,7 @@ def check_dashes():
 version = check_skill()
 check_codex()
 check_versions(version)
+check_icons()
 check_dashes()
 
 if errors:

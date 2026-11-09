@@ -9,5 +9,6 @@
   "homepage": "https://github.com/CelikE/prompt-refiner-skill",
   "repository": "https://github.com/CelikE/prompt-refiner-skill",
   "license": "MIT",
+  "icon": "./skills/prompt-refiner/assets/icon.png",
   "keywords": ["prompt", "refine", "rewrite", "agent-skills", "skill"]
 }
