@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: markdown-no-file
+expected_outcome: |
+  A request for Markdown is not a request to create files. Show the preview,
+  then reply with the checklist inline. Run with --allow-tools Edit Write so the
+  zero-call check is meaningful.

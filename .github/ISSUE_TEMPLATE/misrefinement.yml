@@ -1,0 +1,58 @@
+name: Misrefinement
+description: The skill changed your meaning, added something, or picked the wrong mode.
+labels: ["misrefinement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Reports like this usually become eval cases. Remove any secrets
+        or private details from the input before posting.
+  - type: textarea
+    id: input
+    attributes:
+      label: Input
+      description: The exact text you passed to the skill, including `/prompt-refiner` or `$prompt-refiner`.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the skill produced
+      description: The "Prompt used" preview or the rewritten prompt.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: Kind of problem
+      options:
+        - Meaning or scope changed
+        - Something was added or invented
+        - A literal (code, command, error text) was changed
+        - Wrong mode (ran when it should rewrite, or the other way)
+        - Asked a question it did not need to, or did not ask when it should
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool
+      options: [Claude Code, OpenCode, Codex, Other]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Tool version, model, and skill version
+      placeholder: "Claude Code 2.1.319, claude-opus-5-5, prompt-refiner 0.1.0"
+    validations:
+      required: true

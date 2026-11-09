@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: fence-length
+expected_outcome: |
+  The refined prompt contains a triple-backtick fence, so the preview must use a
+  fence of four or more backticks.

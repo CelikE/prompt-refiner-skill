@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: refine-then-run
+expected_outcome: |
+  Explicit request to run after refining: show the preview, then return 42.

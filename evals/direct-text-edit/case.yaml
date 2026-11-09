@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: direct-text-edit
+expected_outcome: |
+  Return a shorter Danish release notice, not a rewritten instruction. Preserve the
+  tentative Friday release without inventing a confirmed date or time. Omit the
+  preview because the request says to return only the revised notice.

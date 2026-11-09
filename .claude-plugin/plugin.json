@@ -1,0 +1,13 @@
+{
+  "name": "prompt-refiner",
+  "version": "0.1.0",
+  "description": "Refine a rough request without changing its meaning, show it as \"Prompt used\", then carry it out. Rewrite-only mode for improving prompts.",
+  "author": {
+    "name": "Emil Celik",
+    "url": "https://github.com/CelikE"
+  },
+  "homepage": "https://github.com/CelikE/prompt-refiner-skill",
+  "repository": "https://github.com/CelikE/prompt-refiner-skill",
+  "license": "MIT",
+  "keywords": ["prompt", "refine", "rewrite", "agent-skills", "skill"]
+}

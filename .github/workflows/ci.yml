@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  skill:
+    name: Skill metadata and generated evals
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check skill metadata, versions, and style
+        run: python3 -I scripts/check_skill.py
+      - name: Check generated eval cases are up to date
+        run: |
+          python3 -I evals/generate.py evals --force
+          if [ -n "$(git status --porcelain -- evals)" ]; then
+            git status --porcelain -- evals
+            echo "::error::evals/ is out of sync with evals/generate.py. Run: python3 -I evals/generate.py evals --force"
+            exit 1
+          fi
+
+  plugin:
+    name: Plugin manifest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin validate . --strict
+
+  markdown:
+    name: Markdown and links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Lint Markdown
+        run: npx --yes markdownlint-cli2 "**/*.md"
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude "^https://github.com/CelikE/prompt-refiner-skill"
+            --exclude "^https://img.shields.io"
+            "**/*.md"
+          fail: true
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

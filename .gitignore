@@ -1,0 +1,16 @@
+# The plugin manifests must be committed, even when a global gitignore
+# excludes .claude-plugin/.
+!.claude-plugin/
+!.claude-plugin/**
+
+# Eval run output (reports, JSON, transcripts)
+evals/results/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/

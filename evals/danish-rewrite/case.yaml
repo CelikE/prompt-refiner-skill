@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: danish-rewrite
+expected_outcome: |
+  Return a Danish prompt with typos fixed. Do not translate it and do not write the email.

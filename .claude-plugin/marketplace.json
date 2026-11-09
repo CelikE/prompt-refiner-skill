@@ -1,0 +1,16 @@
+{
+  "name": "prompt-refiner-skill",
+  "description": "The prompt-refiner Agent Skill: refine rough requests without changing their meaning.",
+  "owner": {
+    "name": "Emil Celik",
+    "url": "https://github.com/CelikE"
+  },
+  "plugins": [
+    {
+      "name": "prompt-refiner",
+      "source": "./",
+      "description": "Refine a rough request without changing its meaning, then carry it out.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: large-paste
+expected_outcome: |
+  Over ~40 lines of pasted material: the preview refers to the pasted lines
+  instead of echoing them. Answer: 7.

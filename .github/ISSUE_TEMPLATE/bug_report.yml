@@ -1,0 +1,31 @@
+name: Bug report
+description: Installation, loading, configuration, or eval tooling problems.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include exact error messages.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Tool
+      options: [Claude Code, OpenCode, Codex, Eval tooling, Other]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Tool version, OS, and skill version
+      placeholder: "OpenCode 2.2.6, macOS 15, prompt-refiner 0.1.0"
+    validations:
+      required: true

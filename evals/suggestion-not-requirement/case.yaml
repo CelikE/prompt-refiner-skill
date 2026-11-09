@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: suggestion-not-requirement
+expected_outcome: |
+  Return a prompt where Redis stays an optional suggestion and other options stay open.

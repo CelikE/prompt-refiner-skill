@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: visible-execution
+expected_outcome: |
+  Before calculating, display "Prompt used" with the complete refined task prompt
+  in a fenced text block. Correct "calcuate" without expanding the task. Continue
+  automatically and return 42, without repeating the preview.

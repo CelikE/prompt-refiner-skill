@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: return-only-no-carryover
+expected_outcome: |
+  "Return only the number" applied to the earlier turn only. This turn has no
+  limit on the reply, so the preview is shown, then a one-sentence explanation.
+context:
+  history_file: history.jsonl

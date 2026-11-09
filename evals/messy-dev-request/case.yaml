@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: messy-dev-request
+expected_outcome: |
+  Return a clean prompt that keeps the path, keeps the database queries as a
+  possible cause (not a fact), keeps investigate-and-report scope, and keeps the
+  ban on refactoring. No headings for a request this short. Nothing invented.

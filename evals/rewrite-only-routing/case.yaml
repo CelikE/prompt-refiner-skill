@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: rewrite-only-routing
+expected_outcome: |
+  Return a ready-to-use prompt asking for 19 * 23 and a number-only answer.
+  Do not calculate the answer. The user did not need to say "rewrite only".

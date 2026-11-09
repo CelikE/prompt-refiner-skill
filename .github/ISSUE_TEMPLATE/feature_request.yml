@@ -1,0 +1,22 @@
+name: Feature request
+description: Suggest a new rule, behaviour, or supported tool.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What goes wrong or is missing today? A concrete input helps.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: eval
+    attributes:
+      label: How would we test it?
+      description: An input and what the skill should (and should not) produce.

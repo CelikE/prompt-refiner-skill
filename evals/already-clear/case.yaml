@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: already-clear
+expected_outcome: |
+  Return the already-clear prompt unchanged rather than embellishing it or
+  answering it. Preserve the exact bullet count, language, and no-code constraint.

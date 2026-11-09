@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: role-plus-task-runs
+expected_outcome: |
+  A role opener followed by a task for now is Run, not a system-prompt rewrite.
+  Show the preview, then review: the empty-list division by zero is the bug.

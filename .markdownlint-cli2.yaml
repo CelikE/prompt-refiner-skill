@@ -1,0 +1,14 @@
+config:
+  default: true
+  MD013: false # line length: tables and long links are fine
+  MD024:
+    siblings_only: true # repeated headings under different parents (CHANGELOG)
+  MD033: false # inline HTML
+  MD041: false # first line heading: CODE_OF_CONDUCT and templates
+  MD060: false # compact |---| table separators are fine
+ignores:
+  - "evals/**"
+  - "CODE_OF_CONDUCT.md"
+  # Model-facing: its formatting mirrors the output the skill must produce.
+  - "skills/**"
+  - "node_modules/**"

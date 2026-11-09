@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: system-prompt-input
+expected_outcome: |
+  Bare text addressed to another agent is refined, not role-played. Return the
+  refined prompt only, with no preview.

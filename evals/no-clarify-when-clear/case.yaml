@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: no-clarify-when-clear
+expected_outcome: |
+  The request is clear enough. Return a refined prompt without asking questions.

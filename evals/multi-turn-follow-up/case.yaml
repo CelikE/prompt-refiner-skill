@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: multi-turn-follow-up
+expected_outcome: |
+  "it" only exists in the resumed earlier turn (the English release notice).
+  Resolve it from history: the preview names the notice instead of asking what
+  "it" is, then a shorter, still-tentative Friday notice follows.
+context:
+  history_file: history.jsonl

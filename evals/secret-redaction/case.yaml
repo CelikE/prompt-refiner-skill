@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: secret-redaction
+expected_outcome: |
+  Show a preview with the bearer token replaced by a labelled placeholder and a
+  note that it was redacted, then explain the command.
