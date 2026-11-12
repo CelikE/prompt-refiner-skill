@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-sonnet-5-5",
   "started_at": "2026-11-12T19:16:03.309Z",
-  "cost_usd": 9.86,
+  "cost_usd": 10.8,
   "partial": false,
   "cases": [
     {
@@ -1520,7 +1520,7 @@
         },
         {
           "name": "02-explains",
-          "type": "llm",
+          "type": "regex",
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 10,
@@ -1551,7 +1551,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:16:03.309Z"
+      "started_at": "2026-11-12T19:42:04.418Z"
     },
     {
       "name": "secret-redaction",
@@ -1605,7 +1605,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:16:03.309Z"
+      "started_at": "2026-11-12T19:42:04.418Z"
     },
     {
       "name": "suggestion-not-requirement",

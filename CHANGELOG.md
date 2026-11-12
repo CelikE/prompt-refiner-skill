@@ -41,10 +41,17 @@ All notable changes to this project are documented here. The format follows
   skill on smaller models: no confirmation before a destructive step, and a
   redacted secret repeated in the answer.
 - `clarify-when-needed` no longer requires a question mark in the reply.
+- `secret-connection-string` checks the explanation with a regex. The LLM judge
+  failed a reply that plainly explained the rejected password.
 - The manual Evals workflow takes a `model` input and uses each case's own run
   count unless `runs` is set.
 
 ### Fixed
+
+- `SKILL.md`: a redacted secret is no longer repeated in the answer. The
+  preview showed `<REDACTED: password>` and the explanation below it sometimes
+  quoted the password (1 of 10 runs on Opus, 2 of 10 on Haiku). The rule now
+  covers the whole reply.
 
 - `summarize_results.py --check` now fails when the run holds no cases (for
   example after a `--case` pattern that matched nothing).

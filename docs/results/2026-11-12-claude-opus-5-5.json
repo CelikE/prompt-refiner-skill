@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-opus-5-5",
   "started_at": "2026-11-12T19:08:02.869Z",
-  "cost_usd": 19.79,
+  "cost_usd": 21.76,
   "partial": false,
   "cases": [
     {
@@ -1502,10 +1502,10 @@
     {
       "name": "secret-connection-string",
       "runs": 10,
-      "score": 0.9400000000000001,
-      "runs_passed": 9,
-      "baseline": 0.7,
-      "delta": 0.2400000000000001,
+      "score": 1.0,
+      "runs_passed": 10,
+      "baseline": 0.76,
+      "delta": 0.24,
       "format_passed": 30,
       "format_total": 30,
       "errors": [],
@@ -1515,12 +1515,12 @@
           "type": "regex",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 9,
-          "passed_without": 5
+          "passed_with": 10,
+          "passed_without": 6
         },
         {
           "name": "02-explains",
-          "type": "llm",
+          "type": "regex",
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 10,
@@ -1551,7 +1551,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-12T19:40:52.613Z"
     },
     {
       "name": "secret-redaction",
@@ -1605,7 +1605,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-12T19:40:52.613Z"
     },
     {
       "name": "suggestion-not-requirement",

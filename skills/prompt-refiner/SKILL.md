@@ -86,6 +86,8 @@ request.
      instruction and refer to the material ("the pasted spec above, ~300 lines")
      instead of echoing it.
    - Replace secret values with `<REDACTED: name>` and say they were redacted.
+     Never write the value itself anywhere in the reply, not even to comment on
+     it; refer to it by name ("the password").
 2. Continue immediately in the same turn. Do not ask for approval of the
    refined wording. The preview is not approval for actions: a destructive,
    irreversible, or outward-facing step (deleting data, force-pushing,
