@@ -22,6 +22,12 @@ All notable changes to this project are documented here. The format follows
 - `scripts/summarize_results.py` prints the results table from an eval run and,
   with `--check`, fails when a behaviour or format check fails in the skill arm.
   The manual Evals workflow runs it.
+- `scripts/collect_traces.py` copies the transcripts of an eval run next to its
+  results, so a baseline score can be audited after the run. The Evals workflow
+  runs the suite with `--keep-temp` and uploads the transcripts.
+- `docs/results/` holds a committed summary of each published run (scores and
+  per-grader pass counts in both arms, no transcripts). `summarize_results.py
+  --save` writes it and can print the table again from it.
 
 ## [0.1.0] - 2026-11-09
 

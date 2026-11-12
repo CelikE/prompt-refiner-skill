@@ -1,9 +1,11 @@
 """Summarise a `claude plugin eval` run as the Markdown table used in docs/evals.md.
 
 Usage: python3 -I scripts/summarize_results.py RUN.json [--check]
+           [--save SUMMARY.json] [--model MODEL]
 
-RUN.json is the file written by `claude plugin eval --json RUN.json`, or the
-`aggregate-result.json` in a results directory. Standard library only.
+RUN.json is the file written by `claude plugin eval --json RUN.json`, the
+`aggregate-result.json` in a results directory, or a summary written earlier
+with --save. Standard library only.
 
 Graders are split in two groups (see `fmt()` in evals/generate.py):
 
@@ -13,6 +15,11 @@ Graders are split in two groups (see `fmt()` in evals/generate.py):
 
 --check exits 1 when a behaviour check or a format check fails in the skill
 arm, so a format regression still fails a run even though it is not scored.
+
+--save writes a compact summary (scores and per-grader pass counts, no
+transcripts and no local paths) that is small enough to commit under
+docs/results/. The model id is read from a run transcript when one still
+exists (see scripts/collect_traces.py); pass --model when it does not.
 """
 import argparse
 import json
@@ -36,6 +43,12 @@ def mean(values):
     return sum(values) / len(values) if values else None
 
 
+def passes(runs, name):
+    """How many of these runs passed the named grader; None when it did not run."""
+    results = [g["passed"] for r in runs for g in r["graders"] if g["name"] == name]
+    return sum(1 for p in results if p) if results else None
+
+
 def summarise(case):
     format_names = {g["name"] for g in case["graders"] if is_format(g)}
     with_runs = case["arms"].get("with") or []
@@ -54,6 +67,47 @@ def summarise(case):
         "format_passed": sum(1 for p in fmt_results if p),
         "format_total": len(fmt_results),
         "errors": [r["error"] for r in with_runs + without_runs if r.get("error")],
+        "graders": [{"name": g["name"], "type": g["type"], "weight": g["weight"],
+                     "kind": "format" if g["name"] in format_names else "behaviour",
+                     "passed_with": passes(with_runs, g["name"]),
+                     "passed_without": passes(without_runs, g["name"])}
+                    for g in case["graders"]],
+    }
+
+
+def detect_model(data):
+    """Model id from the first run transcript that still exists, else None."""
+    for case in data["cases"]:
+        for runs in case["arms"].values():
+            for run in runs or []:
+                path = Path(run.get("tracePath") or "")
+                if not path.is_file():
+                    continue
+                for line in path.read_text(encoding="utf-8").splitlines():
+                    try:
+                        event = json.loads(line)
+                    except ValueError:
+                        continue
+                    if event.get("type") == "system" and event.get("model"):
+                        return event["model"]
+    return None
+
+
+def load(path, model):
+    """Return a summary dict from a raw run file or from a saved summary."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if "summary_version" in data:
+        return data
+    plugins = (data.get("suite") or {}).get("plugins") or [{}]
+    return {
+        "summary_version": 1,
+        "skill_version": plugins[0].get("version"),
+        "claude_version": data.get("claudeVersion"),
+        "model": model or detect_model(data),
+        "started_at": data.get("startedAt"),
+        "cost_usd": round(data.get("costUsd") or 0, 2),
+        "partial": bool(data.get("partial")),
+        "cases": [summarise(c) for c in data["cases"]],
     }
 
 
@@ -78,10 +132,18 @@ def main():
     parser.add_argument("run", type=Path, help="run JSON (--json output or aggregate-result.json)")
     parser.add_argument("--check", action="store_true",
                         help="exit 1 if any behaviour or format check failed in the skill arm")
+    parser.add_argument("--save", type=Path, metavar="SUMMARY.json",
+                        help="also write a compact summary that is safe to commit")
+    parser.add_argument("--model", help="model id to record when no transcript is left to read it from")
     args = parser.parse_args()
 
-    data = json.loads(args.run.read_text(encoding="utf-8"))
-    rows = [summarise(c) for c in data["cases"]]
+    data = load(args.run, args.model)
+    rows = data["cases"]
+    if args.save:
+        if not data["model"]:
+            sys.exit("error: model unknown; no transcript left to read it from. Pass --model.")
+        args.save.parent.mkdir(parents=True, exist_ok=True)
+        args.save.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     deltas = [r["delta"] for r in rows if r["delta"] is not None]
     runs = sum(r["runs"] for r in rows)
     runs_passed = sum(r["runs_passed"] for r in rows)
@@ -90,8 +152,9 @@ def main():
 
     print(table(rows))
     print()
-    print(f"Claude Code {data.get('claudeVersion', '?')}, started {data.get('startedAt', '?')}, "
-          f"cost ${data.get('costUsd', 0):.2f}{', PARTIAL RUN' if data.get('partial') else ''}.")
+    print(f"Skill {data['skill_version'] or '?'}, Claude Code {data['claude_version'] or '?'}, "
+          f"model {data['model'] or 'unknown'}, started {data['started_at'] or '?'}, "
+          f"cost ${data['cost_usd']:.2f}{', PARTIAL RUN' if data['partial'] else ''}.")
     print(f"Behaviour: {runs_passed} of {runs} skill-arm runs passed every behaviour check; "
           f"mean delta over the {len(deltas)} cases with a baseline: {num(mean(deltas), signed=True)}.")
     print(f"Format: {fmt_passed} of {fmt_total} format checks passed in the skill arm.")
@@ -99,7 +162,7 @@ def main():
     errors = [f"{r['name']}: {e}" for r in rows for e in r["errors"]]
     for e in errors:
         print(f"run error: {e}", file=sys.stderr)
-    if args.check and (errors or data.get("partial") or runs_passed != runs or fmt_passed != fmt_total):
+    if args.check and (errors or data["partial"] or runs_passed != runs or fmt_passed != fmt_total):
         sys.exit(1)
 
 
