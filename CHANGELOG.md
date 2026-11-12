@@ -6,6 +6,23 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Eval graders are split into behaviour checks (scored in both arms) and
+  format checks (`fmt(...)`, skill arm only). The published delta now comes
+  from behaviour checks alone. Up to 0.1.0 the baseline lost points for not
+  printing the skill's own "Prompt used" format, which inflated the delta.
+- Mixed graders were split so that no behaviour check mentions the preview,
+  and every case has at least one behaviour check the plain model can pass.
+- `docs/evals.md` explains that the baseline arm receives the literal
+  `/prompt-refiner` text and that the delta is an upper bound.
+
+### Added
+
+- `scripts/summarize_results.py` prints the results table from an eval run and,
+  with `--check`, fails when a behaviour or format check fails in the skill arm.
+  The manual Evals workflow runs it.
+
 ## [0.1.0] - 2026-11-09
 
 Initial public release.

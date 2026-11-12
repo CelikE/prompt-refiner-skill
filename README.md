@@ -133,7 +133,9 @@ More in [docs/examples.md](docs/examples.md).
 ## Evals
 
 `evals/` holds 24 generated cases with regex, tool-use, and LLM graders. Each
-case runs with and without the skill, so the score shows what the skill adds.
+case runs with and without the skill. Only behaviour checks count toward the
+score and the delta; checks of the skill's own output format are reported
+separately, because the plain model cannot meaningfully pass or fail them.
 Results, the rule-to-case map, and how to run the suite are in
 [docs/evals.md](docs/evals.md).
 
