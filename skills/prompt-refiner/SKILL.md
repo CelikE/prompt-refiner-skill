@@ -89,10 +89,11 @@ request.
      Never write the value itself anywhere in the reply, not even to comment on
      it; refer to it by name ("the password").
 2. Continue immediately in the same turn. Do not ask for approval of the
-   refined wording. The preview is not approval for actions: a destructive,
-   irreversible, or outward-facing step (deleting data, force-pushing,
-   deploying, sending messages) still needs the confirmation it would need
-   without this skill.
+   refined wording. The preview is not approval for actions: before a
+   destructive, irreversible, or outward-facing step (deleting data,
+   force-pushing, deploying, sending messages), ask the user to confirm and
+   wait for the answer. Do not attempt the step first, and do not hand it to a
+   subagent. Meanwhile, do the parts of the request that change nothing.
 3. Deliver the result without repeating the preview.
 
 Skip the preview when the user limits what the reply may contain ("return only
