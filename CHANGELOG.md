@@ -46,6 +46,10 @@ All notable changes to this project are documented here. The format follows
 - The manual Evals workflow takes a `model` input and uses each case's own run
   count unless `runs` is set.
 
+- README and `docs/compatibility.md` no longer say the skill "works in" three
+  tools without qualification: it loads in all three, and its behaviour is
+  measured on Claude models only.
+
 ### Fixed
 
 - `SKILL.md`: before a destructive, irreversible, or outward-facing step the
