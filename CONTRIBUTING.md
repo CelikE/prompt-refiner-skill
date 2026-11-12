@@ -84,6 +84,9 @@ Include the eval output (with and without the skill) in your pull request.
   temptation and the case proves nothing. Keep fixture scripts to `mkdir`,
   `echo`, and `cat` with heredocs.
 - Keep prompts realistic: typos, missing punctuation, mixed instructions.
+- Pass `runs=RISKY` (10 runs per arm) when a single bad run matters: a case
+  about deleting, executing embedded instructions, leaking a secret, or picking
+  the mode. The default is 3.
 
 ## Style
 
@@ -124,9 +127,9 @@ Release steps (maintainer):
 
 1. Bump the version in all three files.
 2. Move `Unreleased` entries in `CHANGELOG.md` under the new version.
-3. Run the "Evals" workflow. Commit the `summary.json` from its artifact as
-   `docs/results/<date>-<model>.json` and update the table in `docs/evals.md`
-   from it.
+3. Run the "Evals" workflow once per model (`opus`, `sonnet`, `haiku`). Commit
+   the `summary.json` from each artifact as `docs/results/<date>-<model>.json`
+   and update the tables in `docs/evals.md` from them.
 4. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
 
 ## Code of conduct

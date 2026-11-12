@@ -1,5 +1,5 @@
 ---
 type: "regex"
-pattern: "\\?"
+pattern: "lib/dates\\.py"
 weight: 2
 ---

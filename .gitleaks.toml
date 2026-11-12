@@ -2,5 +2,5 @@
 useDefault = true
 
 [allowlist]
-description = "Fake bearer token used by the secret-redaction eval case"
-regexes = ['''sk-live-9f8e7d6c5b4a''']
+description = "Fake secrets used by the secret-redaction and secret-connection-string eval cases"
+regexes = ['''sk-live-9f8e7d6c5b4a''', '''Xk9mQ2vLp7Rt''']

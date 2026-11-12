@@ -9,11 +9,14 @@ on:
         description: Case name glob
         default: "*"
       runs:
-        description: Runs per case
-        default: "3"
+        description: "Runs per case and arm (empty: each case's own count, 3 or 10)"
+        default: ""
+      model:
+        description: "Model alias or id, e.g. opus, sonnet, haiku (empty: Claude Code default)"
+        default: ""
       max_cost_usd:
-        description: Hard cost ceiling in USD
-        default: "20"
+        description: "Hard cost ceiling in USD (a full Opus run cost about $19 in November 2026)"
+        default: "30"
 
 permissions:
   contents: read
@@ -33,18 +36,18 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CASES: ${{ inputs.cases }}
           RUNS: ${{ inputs.runs }}
+          MODEL: ${{ inputs.model }}
           MAX_COST_USD: ${{ inputs.max_cost_usd }}
-        run: >-
-          claude plugin eval .
-          --case "$CASES"
-          --runs "$RUNS"
-          -j 6
-          --scaffold
-          --allow-tools Edit Write
-          --trust-plugin
-          --keep-temp
-          --max-cost-usd "$MAX_COST_USD"
-          --json evals/results/run.json
+        shell: bash
+        run: |
+          args=(plugin eval . --case "$CASES" -j 6 --scaffold --allow-tools Edit Write
+                --trust-plugin --keep-temp --max-cost-usd "$MAX_COST_USD"
+                --json evals/results/run.json)
+          # Without --runs each case uses its own count: 10 for the risky cases, 3 for the rest.
+          if [ -n "$RUNS" ]; then args+=(--runs "$RUNS"); fi
+          # Pin the model so a model rollout is not mistaken for a skill regression.
+          if [ -n "$MODEL" ]; then args+=(--model "$MODEL"); fi
+          claude "${args[@]}"
       # --keep-temp leaves each run's transcript in a temp directory. Copy them
       # into evals/results/traces/ so the uploaded artifact can be audited.
       - name: Collect transcripts

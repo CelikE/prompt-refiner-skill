@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: negations-kept
+expected_outcome: |
+  Return a prompt that keeps both prohibitions (tests, new dependencies) and the
+  statement that speed is not a goal. A non-goal must not become a goal.
