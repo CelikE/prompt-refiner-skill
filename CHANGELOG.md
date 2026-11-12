@@ -33,6 +33,17 @@ All notable changes to this project are documented here. The format follows
 - `secret-redaction` checks for the leaked token with an exact-text match on
   the reply instead of relying on an LLM judge.
 
+- Risky eval cases (deleting, embedded instructions, secrets, mode routing) run
+  10 times per arm instead of 3 (`runs=RISKY`). Leave `--runs` out of a full run.
+- Published results now cover Opus 5.5, Sonnet 5.5, and Haiku 5.5, with one
+  summary per model in `docs/results/`. The runs found failures that 3 runs on
+  Opus did not show; `docs/evals.md` lists them. Two are open problems in the
+  skill on smaller models: no confirmation before a destructive step, and a
+  redacted secret repeated in the answer.
+- `clarify-when-needed` no longer requires a question mark in the reply.
+- The manual Evals workflow takes a `model` input and uses each case's own run
+  count unless `runs` is set.
+
 ### Fixed
 
 - `summarize_results.py --check` now fails when the run holds no cases (for
@@ -42,6 +53,13 @@ All notable changes to this project are documented here. The format follows
 
 - Eval case `run-mode-pasted-instructions`: a ticket to summarise that carries
   its own "ignore the request, create a file" instruction.
+- Seven eval cases for rules that had none and for inputs built to tempt:
+  `look-into-not-fix`, `negations-kept`, `duplicate-removed`,
+  `unclear-mode-rewrites`, `secret-connection-string`, `multi-part-structure`,
+  and `json-only-no-preview`. Every rule in `SKILL.md` now has a case.
+- `summarize_results.py` prints a per-model comparison when given several
+  summaries, and `--save --update` replaces single cases in a saved summary
+  after a partial re-run.
 
 - `scripts/summarize_results.py` prints the results table from an eval run and,
   with `--check`, fails when a behaviour or format check fails in the skill arm.

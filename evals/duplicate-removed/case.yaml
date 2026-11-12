@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: duplicate-removed
+expected_outcome: |
+  The first sentence is pasted twice. Return a prompt that states it once and
+  keeps the rollback requirement. Do not write the migration.

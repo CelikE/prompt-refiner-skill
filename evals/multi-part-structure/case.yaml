@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: multi-part-structure
+expected_outcome: |
+  Several distinct parts: this is where rule 7 allows a list. Return a prompt with
+  a list, every part kept, the two prohibitions kept, no persona, nothing invented.

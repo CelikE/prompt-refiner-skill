@@ -1,0 +1,5 @@
+schema_version: "1.1"
+name: json-only-no-preview
+expected_outcome: |
+  "JSON only" limits what the reply may contain, so there is no preview: the
+  reply is the array and nothing else.

@@ -4,4 +4,4 @@ focus: "last_message"
 weight: 3
 ---
 
-The response is a short clarifying question (or two) about what should be updated and how. It does not contain a speculative rewritten prompt.
+The response asks for the missing information: what should be updated, and how. It may be a question or a short request. It does not contain a speculative rewritten prompt.
