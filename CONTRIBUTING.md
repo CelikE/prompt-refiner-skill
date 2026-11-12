@@ -23,6 +23,7 @@ need no new case, but the existing suite must still pass.
 | `evals/<case>/` | Generated. Never edit by hand. |
 | `docs/` | Design notes, compatibility, examples, eval results. |
 | `scripts/check_skill.py` | Metadata, version, and style checks run by CI. |
+| `scripts/summarize_results.py` | Turns an eval run into the results table in `docs/evals.md`. |
 
 ## Local setup
 
@@ -43,10 +44,13 @@ ln -s "$PWD/skills/prompt-refiner" ~/.agents/skills/prompt-refiner
    python3 -I evals/generate.py evals --force
    ```
 
-4. Run the affected cases (needs Claude Code and costs API credit):
+4. Run the affected cases (needs Claude Code and costs API credit), then
+   print the summary table:
 
    ```sh
-   claude plugin eval . --case 'your-case-*' --runs 3 --allow-tools Edit Write
+   claude plugin eval . --case 'your-case-*' --runs 3 --allow-tools Edit Write \
+     --json evals/results/run.json
+   python3 -I scripts/summarize_results.py evals/results/run.json --check
    ```
 
 5. Run the free checks:
@@ -63,6 +67,12 @@ Include the eval output (with and without the skill) in your pull request.
 
 - Prefer cheap, deterministic graders (`rx`, `no_tool`) and use `llm` graders
   for judgement calls.
+- Wrap a grader in `fmt(...)` when it tests the skill's own output format (the
+  **Prompt used** preview, the fence, the redaction placeholder, "nothing but
+  the prompt"). Format checks are reported for the skill arm only and do not
+  count toward the score. Every case needs at least one behaviour check that
+  the plain model could also pass, and its criteria must not mention the
+  preview.
 - Rewrite-mode cases should include `**NO_READ`, so any file access fails.
 - Offer a tool in `tools=` when a zero-call check needs it to mean something.
   Do not grant Bash in the run command; the suite relies on it being absent.
