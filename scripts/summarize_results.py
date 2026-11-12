@@ -162,6 +162,8 @@ def main():
     errors = [f"{r['name']}: {e}" for r in rows for e in r["errors"]]
     for e in errors:
         print(f"run error: {e}", file=sys.stderr)
+    if args.check and not runs:
+        sys.exit("error: the run holds no cases; did the --case pattern match anything?")
     if args.check and (errors or data["partial"] or runs_passed != runs or fmt_passed != fmt_total):
         sys.exit(1)
 

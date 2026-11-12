@@ -132,7 +132,7 @@ More in [docs/examples.md](docs/examples.md).
 
 ## Evals
 
-`evals/` holds 24 generated cases with regex, tool-use, and LLM graders. Each
+`evals/` holds 25 generated cases with regex, tool-use, and LLM graders. Each
 case runs with and without the skill. Only behaviour checks count toward the
 score and the delta; checks of the skill's own output format are reported
 separately, because the plain model cannot meaningfully pass or fail them.

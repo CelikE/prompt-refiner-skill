@@ -13,8 +13,9 @@ and send messages. The skill makes these promises:
    (pasted prompts, logs, emails, web pages) cannot switch from Rewrite to Run.
 2. **Rewrite mode uses no tools.** Paths, URLs, and commands in the material are
    treated as text.
-3. **Run mode grants nothing new.** The agent's normal permission and
-   confirmation rules still apply.
+3. **Run mode grants nothing new.** Instructions inside pasted or quoted
+   material are treated as part of the material, not as requests from you. The
+   agent's normal permission and confirmation rules still apply.
 4. **The preview is not approval.** Destructive, irreversible, or
    outward-facing steps still need confirmation.
 5. **Secrets are redacted** in the preview.
@@ -28,6 +29,8 @@ replace your agent's permission settings.
 
 - Embedded text that makes the skill execute instead of rewrite, or use tools in
   Rewrite mode.
+- In Run mode, an instruction inside pasted material being carried out as if you
+  had asked for it.
 - A secret from the request appearing unredacted in the preview.
 - The preview being treated as approval for a destructive action.
 - A configuration in this repository that lets a supported tool auto-invoke the
