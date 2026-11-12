@@ -48,6 +48,13 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `SKILL.md`: before a destructive, irreversible, or outward-facing step the
+  skill now says to ask and wait, not to attempt the step first, and not to
+  hand it to a subagent. The old wording ("still needs the confirmation it
+  would need without this skill") held on Opus only: Sonnet asked first in 4
+  of 10 runs and Haiku in 0 of 10. After the change: Sonnet 9 of 10, Haiku 8
+  of 10; the misses did not find the folder and attempted nothing.
+
 - `SKILL.md`: a redacted secret is no longer repeated in the answer. The
   preview showed `<REDACTED: password>` and the explanation below it sometimes
   quoted the password (1 of 10 runs on Opus, 2 of 10 on Haiku). The rule now
