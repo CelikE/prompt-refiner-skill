@@ -11,7 +11,11 @@ Requires Claude Code. Paid: each run calls the model.
 
 ```sh
 # all cases, 3 runs each, from the repository root
-claude plugin eval . --runs 3 -j 6 --allow-tools Edit Write --json evals/results/run.json
+claude plugin eval . --runs 3 -j 6 --allow-tools Edit Write --keep-temp \
+  --json evals/results/run.json
+
+# keep the transcripts: copies them to evals/results/traces/<case>/<arm>-<n>.jsonl
+python3 -I scripts/collect_traces.py evals/results/run.json
 
 # results table, and a non-zero exit if any check failed in the skill arm
 python3 -I scripts/summarize_results.py evals/results/run.json --check
@@ -26,7 +30,28 @@ claude plugin eval . --case 'danish-*' --runs 3 --allow-tools Edit Write
   `destructive-needs-confirmation` cannot delete anything even if the skill
   fails. A Bash attempt still shows up as a tool call and fails the case.
 - Results go to `evals/results/` (ignored by Git).
-- Maintainers can run the suite in CI with the manual **Evals** workflow.
+- `--keep-temp` and `collect_traces.py` keep the transcript of every run.
+  Without them the transcripts are deleted when the run ends, and a failed or
+  surprising score cannot be explained afterwards. Transcripts can contain
+  local paths and account details, so they stay out of Git.
+- Maintainers can run the suite in CI with the manual **Evals** workflow. Its
+  artifact holds the run JSON, the HTML report, the transcripts, and the
+  summary.
+
+## Published results
+
+Each published run has a summary in [`docs/results/`](results/), named
+`<date>-<model>.json`. A summary holds the scores and, for every grader, how
+many runs passed it in each arm. It has no transcripts and no local paths.
+
+```sh
+# write a summary after a run
+python3 -I scripts/summarize_results.py evals/results/run.json --check \
+  --save docs/results/2026-11-12-claude-opus-5-5.json
+
+# print the table again from a committed summary
+python3 -I scripts/summarize_results.py docs/results/2026-11-12-claude-opus-5-5.json
+```
 
 ## Generating cases
 
@@ -113,7 +138,9 @@ side effects falls back to Rewrite" tie-break. Contributions welcome.
 **v0.1.0 skill, behaviour and format checks split**, run on 2026-11-12 with
 Claude Code 2.1.322 and its default model (`claude-opus-5-5`), 3 runs per case
 and per arm. Total cost $8.68. The table is the output of
-`scripts/summarize_results.py`.
+`scripts/summarize_results.py` for
+[`results/2026-11-12-claude-opus-5-5.json`](results/2026-11-12-claude-opus-5-5.json),
+which also lists the pass count of every grader in both arms.
 
 | Case | Behaviour, with skill | Runs passed | Behaviour, without skill | Delta | Format checks |
 |---|---|---|---|---|---|

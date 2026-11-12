@@ -23,7 +23,9 @@ need no new case, but the existing suite must still pass.
 | `evals/<case>/` | Generated. Never edit by hand. |
 | `docs/` | Design notes, compatibility, examples, eval results. |
 | `scripts/check_skill.py` | Metadata, version, and style checks run by CI. |
-| `scripts/summarize_results.py` | Turns an eval run into the results table in `docs/evals.md`. |
+| `scripts/summarize_results.py` | Turns an eval run into the results table in `docs/evals.md` and a summary for `docs/results/`. |
+| `scripts/collect_traces.py` | Copies the transcripts of an eval run next to its results. |
+| `docs/results/` | One committed summary per published eval run. |
 
 ## Local setup
 
@@ -117,7 +119,9 @@ Release steps (maintainer):
 
 1. Bump the version in all three files.
 2. Move `Unreleased` entries in `CHANGELOG.md` under the new version.
-3. Run the "Evals" workflow and update the results in `docs/evals.md`.
+3. Run the "Evals" workflow. Commit the `summary.json` from its artifact as
+   `docs/results/<date>-<model>.json` and update the table in `docs/evals.md`
+   from it.
 4. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
 
 ## Code of conduct
