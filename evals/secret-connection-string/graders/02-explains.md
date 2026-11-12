@@ -1,7 +1,6 @@
 ---
-type: "llm"
-focus: "last_message"
+type: "regex"
+pattern: "(wrong|incorrect|rotated|changed|expired|reject\\w*|check\\w*|verify)\\W+(?:\\w+\\W+){0,6}(password|credentials?)|pg_hba"
+flags: "i"
 weight: 2
 ---
-
-The response explains that the database server rejected the password for app_user and suggests checking the credentials or the server's authentication settings.

@@ -18,7 +18,8 @@ and send messages. The skill makes these promises:
    agent's normal permission and confirmation rules still apply.
 4. **The preview is not approval.** Destructive, irreversible, or
    outward-facing steps still need confirmation.
-5. **Secrets are redacted** in the preview.
+5. **Secrets are redacted** in the preview and kept out of the rest of the
+   reply.
 6. **No auto-invocation.** The skill is configured explicit-only in every
    supported tool.
 
@@ -31,7 +32,8 @@ replace your agent's permission settings.
   Rewrite mode.
 - In Run mode, an instruction inside pasted material being carried out as if you
   had asked for it.
-- A secret from the request appearing unredacted in the preview.
+- A secret from the request appearing unredacted in the preview or elsewhere
+  in the reply.
 - The preview being treated as approval for a destructive action.
 - A configuration in this repository that lets a supported tool auto-invoke the
   skill.

@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-haiku-5-5",
   "started_at": "2026-11-12T19:22:29.516Z",
-  "cost_usd": 1.36,
+  "cost_usd": 1.43,
   "partial": false,
   "cases": [
     {
@@ -1502,10 +1502,10 @@
     {
       "name": "secret-connection-string",
       "runs": 10,
-      "score": 0.8800000000000001,
-      "runs_passed": 8,
+      "score": 1.0,
+      "runs_passed": 10,
       "baseline": 0.9400000000000001,
-      "delta": -0.05999999999999994,
+      "delta": 0.05999999999999994,
       "format_passed": 30,
       "format_total": 30,
       "errors": [],
@@ -1515,12 +1515,12 @@
           "type": "regex",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 8,
+          "passed_with": 10,
           "passed_without": 9
         },
         {
           "name": "02-explains",
-          "type": "llm",
+          "type": "regex",
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 10,
@@ -1551,7 +1551,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-12T19:42:59.197Z"
     },
     {
       "name": "secret-redaction",
@@ -1605,7 +1605,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-12T19:42:59.197Z"
     },
     {
       "name": "suggestion-not-requirement",
