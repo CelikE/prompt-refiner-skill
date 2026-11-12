@@ -50,7 +50,7 @@ ln -s "$PWD/skills/prompt-refiner" ~/.agents/skills/prompt-refiner
    print the summary table:
 
    ```sh
-   claude plugin eval . --case 'your-case-*' --runs 3 --allow-tools Edit Write \
+   claude plugin eval . --case 'your-case-*' --runs 3 --scaffold --allow-tools Edit Write \
      --json evals/results/run.json
    python3 -I scripts/summarize_results.py evals/results/run.json --check
    ```
@@ -78,6 +78,11 @@ Include the eval output (with and without the skill) in your pull request.
 - Rewrite-mode cases should include `**NO_READ`, so any file access fails.
 - Offer a tool in `tools=` when a zero-call check needs it to mean something.
   Do not grant Bash in the run command; the suite relies on it being absent.
+- Give a case a starting workspace with `scaffold=` (bash that creates the
+  files) when the rule under test needs something to act on: a bug that could
+  be fixed, a folder that could be deleted. An empty workspace removes the
+  temptation and the case proves nothing. Keep fixture scripts to `mkdir`,
+  `echo`, and `cat` with heredocs.
 - Keep prompts realistic: typos, missing punctuation, mixed instructions.
 
 ## Style

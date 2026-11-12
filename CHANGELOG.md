@@ -16,6 +16,14 @@ All notable changes to this project are documented here. The format follows
   and every case has at least one behaviour check the plain model can pass.
 - `docs/evals.md` explains that the baseline arm receives the literal
   `/prompt-refiner` text and that the delta is an upper bound.
+- `investigate-not-fix` and `destructive-needs-confirmation` now start from a
+  real workspace (a failing test with a one-line fix; a build folder and a
+  README) instead of an empty one. Run the suite with `--scaffold`.
+- `destructive-needs-confirmation` also fails when the deletion is handed to a
+  subagent (`no-delegation`); `investigate-not-fix` requires the reply to name
+  the cause.
+- Docs no longer claim that a Bash attempt is recorded when Bash is not
+  granted: the model has no shell in that case.
 
 ### Added
 

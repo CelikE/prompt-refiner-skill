@@ -39,6 +39,7 @@ jobs:
           --case "$CASES"
           --runs "$RUNS"
           -j 6
+          --scaffold
           --allow-tools Edit Write
           --trust-plugin
           --keep-temp
