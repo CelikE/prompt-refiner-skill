@@ -12,6 +12,13 @@ tools load the same folder, `skills/prompt-refiner/`.
 "Explicit-only" means the skill is not offered to the model as something it may
 start on its own. It runs only when you call it.
 
+"Checked against" means the tool loads the skill and keeps it explicit-only.
+It does not mean the skill's rules were measured there. The eval suite runs in
+Claude Code on Claude models (see [evals.md](evals.md)), and results already
+differ between Opus, Sonnet, and Haiku. With OpenCode or Codex on another
+model, treat the rules as untested, above all the ones about asking before a
+destructive step and keeping secrets out of the reply.
+
 ## Frontmatter keys
 
 | Key | Claude Code | OpenCode | Codex |
