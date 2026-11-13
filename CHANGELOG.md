@@ -52,6 +52,8 @@ All notable changes to this project are documented here. The format follows
   counts delete commands only.
 - `secret-connection-string` checks the explanation with a regex. The LLM judge
   failed a reply that plainly explained the rejected password.
+- CI pins what it downloads: GitHub Actions by commit SHA, Claude Code and
+  `markdownlint-cli2` by npm version, and the gitleaks tarball by SHA-256.
 - The manual Evals workflow takes a `model` input and uses each case's own run
   count unless `runs` is set.
 
