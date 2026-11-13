@@ -12,4 +12,9 @@ Removes empty folders.
 ## Installing
 
 Run `npm install -g tidy-cli`, then `tidy --help`.
+
+## Layout
+
+- `src/`: the source files
+- `build/`: the compiled bundle (`build/app.js`, `build/assets/`)
 MD
