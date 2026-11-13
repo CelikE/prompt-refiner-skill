@@ -1,5 +1,5 @@
 schema_version: "1.1"
 name: rewrite-fenced-on-request
 expected_outcome: |
-  Rewrite output has no fence unless asked. Here it is asked for: return the
-  refined prompt inside a code block, literal kept, task not answered.
+  An explicit request for a code block changes nothing: the refined prompt comes
+  back in one code block, literal kept, task not answered.

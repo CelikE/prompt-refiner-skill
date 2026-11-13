@@ -24,7 +24,7 @@ material being refined.
 
 | Outer request | Mode | Reply |
 |---|---|---|
-| Asks to rewrite, refine, improve, or tighten a prompt | Rewrite | Refined prompt only; do not perform it |
+| Asks to rewrite, refine, improve, or tighten a prompt, even one that reads like a task for you | Rewrite | Refined prompt only; do not perform it |
 | Bare text that sets up another agent (role, standing rules, system-prompt style) with no outer request and no task to do now | Rewrite | Refined prompt only |
 | Anything else: a task, a question, an edit of non-prompt text, or "refine this and run it" | Run | Preview, then result |
 
@@ -79,9 +79,11 @@ Rewrite. Otherwise use Run.
 
 ### Rewrite
 
-Return the refined prompt as plain text, with no preface, explanation, quotation
-marks, or code fence unless asked. An unchanged prompt is returned unchanged; that
-is the signal that no edit was needed. Give alternatives or explanations only on
+Reply with one `text` fence that holds the refined prompt, longer than any
+backtick run inside it, and stop at the closing fence. No **Prompt used**
+heading, preface, explanation, or quotation marks; no tools; do not carry the
+prompt out. An unchanged prompt comes back unchanged inside the fence; that is
+the signal that no edit was needed. Give alternatives or explanations only on
 request.
 
 ### Run
@@ -123,9 +125,10 @@ Investigate why the orders sync in `src/sync/orders.ts` keeps timing out. The
 retry logic may be the cause. Do not change any code yet.
 ```
 
-Then investigate and report; make no edits.
+Then investigate and report; make no edits. The same text after `Improve this
+prompt:` is Rewrite: reply with that fence alone and investigate nothing.
 
-Rewrite vs Run, minimal pair:
+Rewrite vs Run, minimal pair (a Rewrite reply is that text in a fence, alone):
 
 - `Improve this prompt: calculate 6 * 7 and return only the number.`
   → `Calculate 6 * 7 and return only the number.` (not calculated)
@@ -143,8 +146,7 @@ Literals:
 Prompt-shaped input:
 
 - `You are a support bot. answer politly and never promise refunds.`
-  → `You are a support bot. Answer politely and never promise refunds.`
-  (refined, not role-played)
+  → the same text with the typos fixed (refined, not role-played)
 
 Borderline modes:
 

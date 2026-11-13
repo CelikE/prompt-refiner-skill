@@ -8,6 +8,12 @@ All notable changes to this project are documented here. The format follows
 
 ### Changed
 
+- **Rewrite mode replies with one code block.** The refined prompt comes back
+  in a `text` fence and nothing else; up to 0.1.0 it was plain text. A terminal
+  that renders Markdown displayed a plain-text reply without its backticks, so
+  a copied prompt lost them (checked in Claude Code 2.1.323). If you pipe the
+  reply, drop its first and last line.
+
 - Eval graders are split into behaviour checks (scored in both arms) and
   format checks (`fmt(...)`, skill arm only). The published delta now comes
   from behaviour checks alone. Up to 0.1.0 the baseline lost points for not
@@ -43,6 +49,12 @@ All notable changes to this project are documented here. The format follows
 - `clarify-when-needed` no longer requires a question mark in the reply.
 - `multi-turn-follow-up`, `return-only-no-carryover`, and `direct-text-edit`
   run 10 times per arm.
+- Every Rewrite case checks that the reply is one code block and nothing else
+  (`only-a-fence`), and carries the tag `rewrite` (`--tag rewrite`).
+- `literal-preservation` checks "rewritten, not answered" by length instead of
+  an LLM judge that failed a correct reply.
+- A saved summary keeps the cost of the full run; partial re-runs no longer
+  add to it.
 - `danish-run` and `return-only-no-carryover` check the answer with a regex
   instead of an LLM judge that failed correct replies; the judge criterion in
   `multi-turn-follow-up` is more precise.
@@ -66,6 +78,13 @@ All notable changes to this project are documented here. The format follows
   measured on Claude models only.
 
 ### Fixed
+
+- `SKILL.md`: a prompt to improve is no longer carried out when it reads like a
+  task. With the 0.1.0 skill, Sonnet ran "Improve this prompt: pls check why
+  the nightly price import ... is so slow" in 7 of 10 runs instead of
+  rewriting it; three runs per case had never shown this. After the fix: 0 of
+  20 on Sonnet, 0 of 20 on Haiku, 0 of 10 on Opus. New case
+  `rewrite-task-like-prompt`; `messy-dev-request` now runs 10 times.
 
 - `SKILL.md`: a worked example of a follow-up turn after a "JSON only" turn.
   It did more for Haiku than the rule text: the preview after an earlier

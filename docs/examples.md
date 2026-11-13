@@ -95,6 +95,8 @@ Only the shorter Danish notice comes back, still tentative. (`direct-text-edit`)
 
 ## Rewrite mode
 
+The reply is one code block that holds the refined prompt, and nothing else.
+
 ### Messy developer request
 
 ```text
