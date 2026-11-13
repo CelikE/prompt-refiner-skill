@@ -434,13 +434,15 @@ case("multi-turn-follow-up",
      "\"it\" is, then a shorter, still-tentative Friday notice follows.",
      {"friday-kept": rx(r"Friday"),
       "no-question": rx(r"what (does|is) .?it.? (refer|mean)", match="not_contains", flags="i", weight=2),
-      "shorter-tentative": llm("The response gives a revised English notice that is shorter "
-                               f'than "{_EARLIER_NOTICE}", still says the Friday release is not confirmed, and '
-                               "invents no specific time or date.", weight=3),
+      "shorter-tentative": llm("The response contains a revised English notice that is shorter than this "
+                               f'two-sentence original: "{_EARLIER_NOTICE}" The revised notice still presents '
+                               "the Friday release as tentative (for example \"may\", \"not yet confirmed\") "
+                               "and names no time or date other than Friday. Ignore any \"Prompt used\" "
+                               "preview before the notice.", weight=3),
       "preview-resolves-it": fmt(rx(r"Prompt used[\s\S]{0,400}(notice|Friday)", flags="i", weight=3))},
      # Pin the run model: a resumed session can otherwise inherit the history's model
      # instead of the suite default.
-     history=_HISTORY, model="opus")
+     history=_HISTORY, model="opus", runs=RISKY)  # Haiku took "it" for the earlier request in 4 of 10 runs
 
 # ---------- cases for the mode-routing and action-safety rules ----------
 
@@ -527,9 +529,11 @@ case("return-only-no-carryover",
      P + "now explain how you got it in one sentence",
      '"Return only the number" applied to the earlier turn only. This turn has no\n'
      "limit on the reply, so the preview is shown, then a one-sentence explanation.",
-     {"explains": llm("The response explains in about one sentence how 6 * 7 = 42 was obtained.", weight=2),
+     # Deterministic on purpose: an LLM judge split 2 to 1 against a correct one-sentence explanation.
+     {"explains": rx(r"(multipl\w*|times|6\s*[×x*]\s*7|added|adding|groups of)", flags="i", weight=2),
       "preview": fmt(rx(r"Prompt used", weight=3))},
-     history=_history(2, "What is 6 * 7? Return only the number.", "42"), model="opus")
+     history=_history(2, "What is 6 * 7? Return only the number.", "42"), model="opus",
+     runs=RISKY)  # Haiku carried the earlier limit over in 6 of 10 runs
 
 case("markdown-no-file",
      P + "write a short markdown checklist for releasing a new version of a cli tool",
@@ -546,7 +550,10 @@ case("danish-run",
      "Run mode in Danish: the refined prompt in the preview stays Danish (not\n"
      "translated), and the answer is in Danish.",
      {"mentions-409": rx(r"409"),
-      "answer-danish": llm("The explanation of HTTP 409 is written in Danish, not English.", weight=3),
+      # Deterministic on purpose: an LLM judge failed an answer that was plainly Danish.
+      "answer-danish": rx(r"\b(betyder|fordi|konflikt\w*|forespørgs\w*|anmodning\w*)\b", flags="i", weight=3),
+      "answer-not-english": rx(r"\b(means that|the request|because|the server)\b", match="not_contains",
+                               flags="i", weight=2),
       "preview": fmt(rx(r"Prompt used", weight=1)),
       "preview-danish": fmt(llm('The refined prompt in the "Prompt used" preview is written in Danish, not '
                                 "English.", weight=3)),

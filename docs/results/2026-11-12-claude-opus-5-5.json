@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-opus-5-5",
   "started_at": "2026-11-12T19:08:02.869Z",
-  "cost_usd": 25.05,
+  "cost_usd": 27.72,
   "partial": false,
   "cases": [
     {
@@ -198,8 +198,8 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.8461538461538461,
-      "delta": 0.15384615384615385,
+      "baseline": 1.0,
+      "delta": 0.0,
       "format_passed": 6,
       "format_total": 6,
       "errors": [],
@@ -214,14 +214,22 @@
         },
         {
           "name": "02-answer-danish",
-          "type": "llm",
+          "type": "regex",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 1
+          "passed_without": 3
         },
         {
-          "name": "03-preview",
+          "name": "03-answer-not-english",
+          "type": "regex",
+          "weight": 2,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "04-preview",
           "type": "regex",
           "weight": 1,
           "kind": "format",
@@ -229,7 +237,7 @@
           "passed_without": null
         },
         {
-          "name": "04-preview-danish",
+          "name": "05-preview-danish",
           "type": "llm",
           "weight": 3,
           "kind": "format",
@@ -237,7 +245,7 @@
           "passed_without": null
         },
         {
-          "name": "05-no-read",
+          "name": "06-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -245,7 +253,7 @@
           "passed_without": 3
         },
         {
-          "name": "06-no-glob",
+          "name": "07-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -253,7 +261,7 @@
           "passed_without": 3
         },
         {
-          "name": "07-no-grep",
+          "name": "08-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -261,7 +269,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:02:33.312Z"
     },
     {
       "name": "destructive-needs-confirmation",
@@ -361,7 +369,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:00:06.619Z"
     },
     {
       "name": "duplicate-removed",
@@ -639,7 +647,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:00:15.007Z"
     },
     {
       "name": "large-paste",
@@ -1015,13 +1023,13 @@
     },
     {
       "name": "multi-turn-follow-up",
-      "runs": 3,
+      "runs": 10,
       "score": 1.0,
-      "runs_passed": 3,
+      "runs_passed": 10,
       "baseline": null,
       "delta": null,
-      "format_passed": 3,
-      "format_total": 3,
+      "format_passed": 10,
+      "format_total": 10,
       "errors": [],
       "graders": [
         {
@@ -1029,7 +1037,7 @@
           "type": "regex",
           "weight": 1,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         },
         {
@@ -1037,7 +1045,7 @@
           "type": "regex",
           "weight": 2,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         },
         {
@@ -1045,7 +1053,7 @@
           "type": "llm",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         },
         {
@@ -1053,11 +1061,11 @@
           "type": "regex",
           "weight": 3,
           "kind": "format",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:02:20.066Z"
     },
     {
       "name": "negations-kept",
@@ -1223,21 +1231,21 @@
     },
     {
       "name": "return-only-no-carryover",
-      "runs": 3,
+      "runs": 10,
       "score": 1.0,
-      "runs_passed": 3,
+      "runs_passed": 10,
       "baseline": null,
       "delta": null,
-      "format_passed": 3,
-      "format_total": 3,
+      "format_passed": 10,
+      "format_total": 10,
       "errors": [],
       "graders": [
         {
           "name": "01-explains",
-          "type": "llm",
+          "type": "regex",
           "weight": 2,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         },
         {
@@ -1245,19 +1253,19 @@
           "type": "regex",
           "weight": 3,
           "kind": "format",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:02:13.482Z"
     },
     {
       "name": "rewrite-only-routing",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.6444444444444444,
-      "delta": 0.3555555555555556,
+      "baseline": 0.6888888888888888,
+      "delta": 0.3111111111111112,
       "format_passed": 6,
       "format_total": 6,
       "errors": [],
@@ -1276,7 +1284,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 0
+          "passed_without": 1
         },
         {
           "name": "03-keeps-number-only",
@@ -1327,7 +1335,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:00:30.426Z"
     },
     {
       "name": "rewrite-paths-not-read",

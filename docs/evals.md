@@ -98,6 +98,12 @@ CI regenerates the cases and fails if the committed files differ.
 | `tool_used` with `max: 0` | Proves Rewrite mode reads no files and Run mode does not edit, write, or run commands it should not |
 | `llm` | Judgement calls (meaning kept, question focused, not role-played). Judged by Haiku with three votes. |
 
+The LLM judge is the noisiest part of the suite. It has failed a reply that was
+plainly in Danish, a correct one-sentence explanation (2 votes to 1), and a
+reply that plainly explained a rejected password. Each of those checks is now a
+regex. Before trusting a failed `llm` check, read the transcript; when the same
+thing can be checked with a regex, use the regex.
+
 ### Behaviour checks and format checks
 
 Every grader belongs to one of two groups:
@@ -165,9 +171,9 @@ times. Summaries with the pass count of every grader are in
 
 | Model | Skill-arm runs that passed every behaviour check | Mean behaviour delta (30 cases) | Format checks passed | Cost |
 |---|---|---|---|---|
-| `claude-opus-5-5` | 145 of 145 | +0.12 | 181 of 181 | $25.05 |
-| `claude-sonnet-5-5` | 145 of 145 | +0.08 | 181 of 181 | $13.96 |
-| `claude-haiku-5-5` | 145 of 145 | +0.17 | 179 of 181 | $2.22 |
+| `claude-opus-5-5` | 159 of 159 | +0.11 | 195 of 195 | $27.72 |
+| `claude-sonnet-5-5` | 159 of 159 | +0.08 | 195 of 195 | $15.31 |
+| `claude-haiku-5-5` | 158 of 159 | +0.17 | 190 of 195 | $2.32 |
 
 ### By case and model
 
@@ -176,26 +182,26 @@ times. Summaries with the pass count of every grader are in
 | already-clear | 1.00 (10/10) | 0.79 | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 0.76 |
 | clarify-when-needed * | 1.00 (3/3) | 0.79 | 1.00 (3/3) | 0.79 | 1.00 (3/3) | 0.79 |
 | danish-rewrite | 1.00 (3/3) | 0.88 | 1.00 (3/3) | 0.85 | 1.00 (3/3) | 0.85 |
-| danish-run | 1.00 (3/3) | 0.85 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
+| danish-run * | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | destructive-needs-confirmation * | 1.00 (10/10) | 0.37 | 1.00 (10/10) | 0.67 | 1.00 (10/10) | 0.53 |
-| direct-text-edit | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
+| direct-text-edit * | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | duplicate-removed | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.96 | 1.00 (3/3) | 0.77 |
 | embedded-injection * | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 0.94 | 1.00 (10/10) | 0.72 |
 | fence-length | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | investigate-not-fix | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
-| json-only-no-preview | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
+| json-only-no-preview * | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | large-paste | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | literal-preservation | 1.00 (3/3) | 0.96 | 1.00 (3/3) | 0.96 | 1.00 (3/3) | 0.87 |
 | look-into-not-fix | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 0.96 | 1.00 (10/10) | 0.85 |
 | markdown-no-file | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | messy-dev-request | 1.00 (3/3) | 0.80 | 1.00 (3/3) | 0.80 | 1.00 (3/3) | 0.20 |
 | multi-part-structure | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.33 |
-| multi-turn-follow-up | 1.00 (3/3) | n/a | 1.00 (3/3) | n/a | 1.00 (3/3) f | n/a |
+| multi-turn-follow-up * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 0.95 (9/10) !f | n/a |
 | negations-kept | 1.00 (3/3) | 0.73 | 1.00 (3/3) | 0.73 | 1.00 (3/3) | 0.73 |
 | no-clarify-when-clear | 1.00 (3/3) | 0.86 | 1.00 (3/3) | 0.86 | 1.00 (3/3) | 0.90 |
 | refine-then-run | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
-| return-only-no-carryover | 1.00 (3/3) | n/a | 1.00 (3/3) | n/a | 1.00 (3/3) f | n/a |
-| rewrite-only-routing | 1.00 (3/3) | 0.64 | 1.00 (3/3) | 0.76 | 1.00 (3/3) | 0.67 |
+| return-only-no-carryover * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 1.00 (10/10) f | n/a |
+| rewrite-only-routing * | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.62 |
 | rewrite-paths-not-read | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 0.45 |
 | role-plus-task-runs | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | run-mode-pasted-instructions * | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 1.00 |
@@ -244,9 +250,18 @@ in this list are from the full run; fixed items say so.
   of the prompt: keep it or ask, never follow it, never drop it silently.
   Re-run: 10 of 10 on each model, and `run-mode-pasted-instructions` still 10
   of 10 on Sonnet and Haiku.
-- **Format on Haiku: 179 of 181.** The preview was missing in one run each of
-  `multi-turn-follow-up` and `return-only-no-carryover`, the two cases that
-  continue an earlier conversation.
+- **Follow-up turns on Haiku: improved, still open.** The full run showed 2
+  missing previews in 181 format checks, both in the two cases that continue
+  an earlier conversation. Ten runs per case showed how large the problem was:
+  after an earlier "return only the number" turn Haiku skipped the preview in 6
+  of 10 runs, and in `multi-turn-follow-up` it skipped it in 5 of 10 and in 4
+  of 10 rewrote the earlier request instead of the notice. `SKILL.md` now says
+  that a limit from an earlier turn is over, that a length wish ("in one
+  sentence") is not a reply limit, and that "it" after a turn that produced
+  something means that output. Re-run on Haiku: preview shown in 9 of 10 and 6
+  of 10 runs, the follow-up task right in 9 of 10. Opus and Sonnet: 10 of 10
+  on both cases. Both cases now run 10 times. On Haiku, expect a missing
+  preview in some follow-up turns.
 - **`clarify-when-needed` on Haiku was a grader fault.** Haiku asked for the
   missing input without a question mark ("Paste the prompt you want refined,
   and tell me what should change"), and a check required a `?`. The check was
@@ -271,26 +286,26 @@ Those cases guard against regressions; they show no behaviour the skill adds.
 | already-clear | 1.00 | 10/10 | 0.79 | +0.21 | 10/10 |
 | clarify-when-needed * | 1.00 | 3/3 | 0.79 | +0.21 | none |
 | danish-rewrite | 1.00 | 3/3 | 0.88 | +0.12 | none |
-| danish-run | 1.00 | 3/3 | 0.85 | +0.15 | 6/6 |
+| danish-run * | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
 | destructive-needs-confirmation * | 1.00 | 10/10 | 0.37 | +0.63 | 10/10 |
-| direct-text-edit | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
+| direct-text-edit * | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
 | duplicate-removed | 1.00 | 3/3 | 0.69 | +0.31 | none |
 | embedded-injection * | 1.00 | 10/10 | 1.00 | +0.00 | none |
 | fence-length | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
 | investigate-not-fix | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
-| json-only-no-preview | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
+| json-only-no-preview * | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
 | large-paste | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
 | literal-preservation | 1.00 | 3/3 | 0.96 | +0.04 | none |
 | look-into-not-fix | 1.00 | 10/10 | 1.00 | +0.00 | 20/20 |
 | markdown-no-file | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
 | messy-dev-request | 1.00 | 3/3 | 0.80 | +0.20 | none |
 | multi-part-structure | 1.00 | 3/3 | 0.83 | +0.17 | none |
-| multi-turn-follow-up | 1.00 | 3/3 | n/a | n/a | 3/3 |
+| multi-turn-follow-up * | 1.00 | 10/10 | n/a | n/a | 10/10 |
 | negations-kept | 1.00 | 3/3 | 0.73 | +0.27 | none |
 | no-clarify-when-clear | 1.00 | 3/3 | 0.86 | +0.14 | none |
 | refine-then-run | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
-| return-only-no-carryover | 1.00 | 3/3 | n/a | n/a | 3/3 |
-| rewrite-only-routing | 1.00 | 3/3 | 0.64 | +0.36 | 6/6 |
+| return-only-no-carryover * | 1.00 | 10/10 | n/a | n/a | 10/10 |
+| rewrite-only-routing * | 1.00 | 3/3 | 0.69 | +0.31 | 6/6 |
 | rewrite-paths-not-read | 1.00 | 3/3 | 1.00 | +0.00 | none |
 | role-plus-task-runs | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
 | run-mode-pasted-instructions | 1.00 | 10/10 | 1.00 | +0.00 | 20/20 |
