@@ -41,7 +41,8 @@ All notable changes to this project are documented here. The format follows
   skill on smaller models: no confirmation before a destructive step, and a
   redacted secret repeated in the answer.
 - `clarify-when-needed` no longer requires a question mark in the reply.
-- `multi-turn-follow-up` and `return-only-no-carryover` run 10 times per arm.
+- `multi-turn-follow-up`, `return-only-no-carryover`, and `direct-text-edit`
+  run 10 times per arm.
 - `danish-run` and `return-only-no-carryover` check the answer with a regex
   instead of an LLM judge that failed correct replies; the judge criterion in
   `multi-turn-follow-up` is more precise.
@@ -62,6 +63,14 @@ All notable changes to this project are documented here. The format follows
   measured on Claude models only.
 
 ### Fixed
+
+- `SKILL.md`: a worked example of a follow-up turn after a "JSON only" turn.
+  It did more for Haiku than the rule text: the preview after an earlier
+  "return only" turn now appears in 30 of 30 runs, and in 25 of 30 runs of
+  `multi-turn-follow-up` (before any change: 4 of 10 and 5 of 10).
+- `.gitignore`: session transcripts that the eval command writes into replay
+  case folders are ignored, so `git add` cannot pick one up. None was ever
+  committed.
 
 - `SKILL.md`: a reply limit from an earlier turn is over, a length wish ("in
   one sentence") is not a reply limit, and "it" after a turn that produced

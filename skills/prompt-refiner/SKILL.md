@@ -131,6 +131,9 @@ Rewrite vs Run, minimal pair:
   → `Calculate 6 * 7 and return only the number.` (not calculated)
 - `calcuate 6 * 7.` → preview `Calculate 6 * 7.`, then `42`.
 - `Calculate 6 * 7 and return only the number.` → `42` (no preview).
+- Next turn, after `list the open ports. JSON only` got bare JSON:
+  `now sort them` → preview `Sort the open ports listed above.`, then the
+  sorted list (the earlier limit is over).
 
 Literals:
 
