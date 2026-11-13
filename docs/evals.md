@@ -50,9 +50,15 @@ claude plugin eval . --case 'danish-*' --runs 3 --scaffold --allow-tools Edit Wr
   Without them the transcripts are deleted when the run ends, and a failed or
   surprising score cannot be explained afterwards. Transcripts can contain
   local paths and account details, so they stay out of Git.
+- By default the eval command publishes its HTML report to your claude.ai
+  account when it can. The report holds the prompts and the grader verdicts.
+  Add `--no-publish` to keep it on disk only.
 - Maintainers can run the suite in CI with the manual **Evals** workflow. Its
   artifact holds the run JSON, the HTML report, the transcripts, and the
-  summary.
+  summary. The workflow needs a repository secret named `ANTHROPIC_API_KEY`
+  (Settings, then Secrets and variables, then Actions) and stops with a clear
+  error when it is missing. Start small to check the setup: one case, model
+  `haiku`, cost ceiling 1.
 
 ## Published results
 

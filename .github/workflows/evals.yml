@@ -31,6 +31,15 @@ jobs:
         with:
           node-version: "22"
       - run: npm install -g @anthropic-ai/claude-code@2.1.323
+      # Fail with a clear message instead of a login error from the eval command.
+      - name: Check that the API key secret is set
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::Repository secret ANTHROPIC_API_KEY is not set. Add it under Settings > Secrets and variables > Actions, then run this workflow again."
+            exit 1
+          fi
       - name: Run eval suite
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -41,7 +50,7 @@ jobs:
         shell: bash
         run: |
           args=(plugin eval . --case "$CASES" -j 6 --scaffold --allow-tools Edit Write
-                --trust-plugin --keep-temp --max-cost-usd "$MAX_COST_USD"
+                --trust-plugin --keep-temp --no-publish --max-cost-usd "$MAX_COST_USD"
                 --json evals/results/run.json)
           # Without --runs each case uses its own count: 10 for the risky cases, 3 for the rest.
           if [ -n "$RUNS" ]; then args+=(--runs "$RUNS"); fi
@@ -51,12 +60,12 @@ jobs:
       # --keep-temp leaves each run's transcript in a temp directory. Copy them
       # into evals/results/traces/ so the uploaded artifact can be audited.
       - name: Collect transcripts
-        if: always()
+        if: always() && hashFiles('evals/results/run.json') != ''
         run: python3 -I scripts/collect_traces.py evals/results/run.json
       # Format checks are not part of the score, so the eval command does not
       # fail on them. The summary script does, and prints the results table.
       - name: Summarise and gate on behaviour and format checks
-        if: always()
+        if: always() && hashFiles('evals/results/run.json') != ''
         shell: bash # explicit bash sets pipefail, so the check's exit code survives tee
         run: python3 -I scripts/summarize_results.py evals/results/run.json --check --save evals/results/summary.json | tee -a "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
