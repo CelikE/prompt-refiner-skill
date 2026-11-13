@@ -6,6 +6,15 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- README install section: one section per route (skills CLI, Claude Code
+  plugin, Codex, OpenCode, GitHub CLI, manual), each with its update and remove
+  command. Tested in throwaway folders: `npx skills` for Codex, OpenCode, and
+  Claude Code; `gh skill`; the plugin install, update, and uninstall; and that
+  `agents/openai.yaml` is installed and keeps the skill out of Codex's
+  implicit skill list.
+
 ## [0.2.0] - 2026-11-13
 
 The Rewrite reply is now a code block, and the skill holds up much better on Sonnet
