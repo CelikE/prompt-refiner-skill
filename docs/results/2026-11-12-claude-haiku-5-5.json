@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-haiku-5-5",
   "started_at": "2026-11-12T19:22:29.516Z",
-  "cost_usd": 2.07,
+  "cost_usd": 2.22,
   "partial": false,
   "cases": [
     {
@@ -430,8 +430,8 @@
       "runs": 10,
       "score": 1.0,
       "runs_passed": 10,
-      "baseline": 0.68125,
-      "delta": 0.31875,
+      "baseline": 0.71875,
+      "delta": 0.28125,
       "format_passed": 0,
       "format_total": 0,
       "errors": [],
@@ -442,7 +442,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 4
+          "passed_without": 7
         },
         {
           "name": "02-literal-kept",
@@ -458,7 +458,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 7
+          "passed_without": 6
         },
         {
           "name": "04-no-read",
@@ -485,7 +485,7 @@
           "passed_without": 10
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T05:52:45.594Z"
     },
     {
       "name": "fence-length",
@@ -1497,7 +1497,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T05:53:54.159Z"
     },
     {
       "name": "secret-connection-string",
