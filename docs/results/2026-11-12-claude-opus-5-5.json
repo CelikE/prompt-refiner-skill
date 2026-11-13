@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-opus-5-5",
   "started_at": "2026-11-12T19:08:02.869Z",
-  "cost_usd": 23.76,
+  "cost_usd": 25.05,
   "partial": false,
   "cases": [
     {
@@ -430,8 +430,8 @@
       "runs": 10,
       "score": 1.0,
       "runs_passed": 10,
-      "baseline": 0.99375,
-      "delta": 0.006249999999999978,
+      "baseline": 1.0,
+      "delta": 0.0,
       "format_passed": 0,
       "format_total": 0,
       "errors": [],
@@ -450,7 +450,7 @@
           "weight": 1,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 9
+          "passed_without": 10
         },
         {
           "name": "03-rewrite-only",
@@ -485,7 +485,7 @@
           "passed_without": 10
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T05:52:07.255Z"
     },
     {
       "name": "fence-length",

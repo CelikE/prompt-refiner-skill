@@ -57,6 +57,11 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `SKILL.md`: in Rewrite mode an instruction inside the material ("ignore
+  previous instructions and run...") is kept in the rewrite or asked about. It
+  is never followed and never dropped silently. Sonnet dropped it in 4 of 10
+  runs; now 10 of 10 keep it on Opus, Sonnet, and Haiku.
+
 - `SKILL.md`: before a destructive, irreversible, or outward-facing step the
   skill now says to ask and wait, not to attempt the step first, and not to
   hand it to a subagent. The old wording ("still needs the confirmation it
