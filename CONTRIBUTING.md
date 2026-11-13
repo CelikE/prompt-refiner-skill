@@ -132,6 +132,19 @@ Release steps (maintainer):
    and update the tables in `docs/evals.md` from them.
 4. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
 
+## Pinned tools in CI
+
+The workflows pin what they download, so a run today and a run next month use
+the same tools:
+
+- GitHub Actions are pinned to a commit SHA, with the version in a comment.
+- Claude Code and `markdownlint-cli2` are pinned to an npm version.
+- The gitleaks tarball is checked against a SHA-256 before it is unpacked.
+
+To update one, change the version and the SHA together in
+`.github/workflows/`. Bump Claude Code when you publish eval results from a
+newer version, so CI validates the plugin with the version the results name.
+
 ## Code of conduct
 
 This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md).
