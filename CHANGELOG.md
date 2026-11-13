@@ -73,6 +73,14 @@ All notable changes to this project are documented here. The format follows
 - The manual Evals workflow takes a `model` input and uses each case's own run
   count unless `runs` is set.
 
+- README rewritten around what is measured: a second opening example for
+  Rewrite mode, the results per model, a table of the checks where the skill
+  changes what the model does, the cases where it makes no difference, known
+  limits on Sonnet and Haiku, a "check that it works" step, and a status note
+  on how `main` differs from the 0.1.0 release. It no longer says a destructive
+  step needs "the confirmation it would need without the skill", that secrets
+  are redacted "in the preview" only, or that plain models execute instructions
+  hidden in pasted text. `check_skill.py` checks the case count stated there.
 - README and `docs/compatibility.md` no longer say the skill "works in" three
   tools without qualification: it loads in all three, and its behaviour is
   measured on Claude models only.

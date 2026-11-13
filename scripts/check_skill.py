@@ -11,6 +11,7 @@ Checks:
     the Codex icon paths exist.
   - No em dashes or en dashes in authored text files.
   - SKILL.md stays short.
+  - The number of eval cases stated in README.md matches evals/.
 """
 import json
 import re
@@ -142,11 +143,22 @@ def check_dashes():
                 fail(f"{rel}:{n}: em or en dash; use a hyphen, comma, colon, or parentheses")
 
 
+def check_readme_case_count():
+    """README says "<n> cases"; it must match the generated case folders."""
+    cases = sum(1 for p in (ROOT / "evals").iterdir() if (p / "case.yaml").is_file())
+    m = re.search(r"\b(\d+) cases\b", (ROOT / "README.md").read_text(encoding="utf-8"))
+    if not m:
+        fail('README.md: no "<n> cases" statement found')
+    elif int(m.group(1)) != cases:
+        fail(f"README.md says {m.group(1)} cases, evals/ holds {cases}")
+
+
 version = check_skill()
 check_codex()
 check_versions(version)
 check_icons()
 check_dashes()
+check_readme_case_count()
 
 if errors:
     print("\n".join(f"error: {e}" for e in errors))
