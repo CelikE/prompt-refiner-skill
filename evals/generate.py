@@ -159,6 +159,17 @@ case("literal-preservation",
                                 "behaviour, compare the JSON objects, or diagnose the error.", weight=3),
       **NO_READ})
 
+case("rewrite-fenced-on-request",
+     P + "Improve this prompt and put it in a code block so i can copy it: expalin `ERR adress not found` "
+         "and list 3 likely causes",
+     "Rewrite output has no fence unless asked. Here it is asked for: return the\n"
+     "refined prompt inside a code block, literal kept, task not answered.",
+     {"fenced": rx(r"```[\s\S]*ERR adress not found[\s\S]*```", weight=3),
+      "prose-fixed": rx(r"expalin", match="not_contains"),
+      "not-answered": llm("The response is a rewritten prompt in a code block. It does not explain the "
+                          "error and does not list causes.", weight=3),
+      **NO_READ})
+
 case("visible-execution",
      P + "calcuate 6 * 7.",
      'Before calculating, display "Prompt used" with the complete refined task prompt\n'

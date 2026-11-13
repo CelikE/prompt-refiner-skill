@@ -74,6 +74,12 @@ continues in the same turn. Details:
 Rewrite mode returns plain text with no preface or fence. An unchanged prompt
 is returned unchanged, which signals that no edit was needed.
 
+Plain text is the default because the reply can then be piped or pasted as it
+is. The cost: a terminal that renders Markdown shows backticks and heading
+marks as formatting, so a copied prompt can lose them. Asking for a code block
+("...and put it in a code block") avoids that, and the skill follows such a
+request.
+
 ## Non-goals
 
 - Expanding short ideas into detailed specs.
