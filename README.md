@@ -123,6 +123,27 @@ are in [docs/results/](docs/results/).
 
 ## Install
 
+Pick one route. They install the same skill and differ in how updates arrive.
+
+### Any tool: the skills CLI
+
+```sh
+npx skills add CelikE/prompt-refiner-skill -a claude-code   # or: -a codex, -a opencode
+```
+
+Add `-g` to install for all your projects instead of the current one. It needs
+Node 22.20 or later and copies the skill into the tool's skill folder (see the
+table below).
+
+```sh
+npx skills update                 # get a newer version
+npx skills remove prompt-refiner  # uninstall
+```
+
+`remove` leaves the `skills-lock.json` file it wrote in your project; delete it
+by hand. An install pinned to a version (`CelikE/prompt-refiner-skill#v0.2.0`)
+stays on that version.
+
 ### Claude Code: plugin
 
 ```text
@@ -137,11 +158,45 @@ On Claude Code versions before 2.1.275, add the marketplace first:
 ```
 
 Plugin skills are namespaced, so invoke it as `/prompt-refiner:prompt-refiner`.
-Use a manual install if you want the short `/prompt-refiner`.
+Use another route if you want the short `/prompt-refiner`. Update with
+`claude plugin update prompt-refiner@prompt-refiner-skill`, remove with
+`claude plugin uninstall prompt-refiner@prompt-refiner-skill`.
 
-### Manual install (all tools)
+### Codex
 
-Clone once and link the skill folder into each tool:
+```sh
+npx skills add CelikE/prompt-refiner-skill -a codex      # this project: .agents/skills/
+npx skills add CelikE/prompt-refiner-skill -a codex -g   # all projects: ~/.agents/skills/
+```
+
+Invoke it as `$prompt-refiner <request>`. The install includes
+`agents/openai.yaml`, which keeps the skill from being offered to the model on
+its own. Codex lists project skills only for a project you have trusted.
+
+### OpenCode
+
+```sh
+npx skills add CelikE/prompt-refiner-skill -a opencode
+```
+
+This installs into `.agents/skills/`, the same folder Codex uses, so one
+project install serves both. Invoke it as `/prompt-refiner <request>`.
+
+### GitHub CLI
+
+```sh
+gh skill install CelikE/prompt-refiner-skill prompt-refiner --agent claude-code --scope user
+```
+
+`gh skill` is in preview. It installs the latest **release** (not `main`), adds
+a `metadata:` block to the skill's `SKILL.md`, and updates with
+`gh skill update`. Valid `--agent` values include `claude-code`, `codex`, and
+`opencode`.
+
+### Manual: clone and link
+
+Clone once and link the skill folder into each tool, so `git pull` updates every
+tool at once:
 
 ```sh
 git clone https://github.com/CelikE/prompt-refiner-skill.git ~/code/prompt-refiner-skill
@@ -154,8 +209,8 @@ mkdir -p ~/.agents/skills
 ln -s ~/code/prompt-refiner-skill/skills/prompt-refiner ~/.agents/skills/prompt-refiner
 ```
 
-`git pull` then updates every tool at once. OpenCode finds the skill through
-both links and lists it once. Copying the folder instead of linking works too.
+A clone follows `main`. OpenCode finds the skill through both links and lists
+it once. Copying the folder instead of linking works too.
 
 | Tool | Skill folders it reads | Invoke with |
 |---|---|---|
