@@ -6,6 +6,13 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-13
+
+The Rewrite reply is now a code block, and the skill holds up much better on Sonnet
+and Haiku. Behaviour is measured on Opus 5.5, Sonnet 5.5, and Haiku 5.5 with 35
+eval cases; see `docs/evals.md`. If you pipe a Rewrite reply, drop its first and
+last line.
+
 ### Changed
 
 - **Rewrite mode replies with one code block.** The refined prompt comes back
@@ -181,5 +188,6 @@ Initial public release.
 - CI for skill metadata, generated-eval drift, Markdown, links, and secrets,
   plus a manual workflow for paid eval runs.
 
-[Unreleased]: https://github.com/CelikE/prompt-refiner-skill/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/CelikE/prompt-refiner-skill/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/CelikE/prompt-refiner-skill/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/CelikE/prompt-refiner-skill/releases/tag/v0.1.0

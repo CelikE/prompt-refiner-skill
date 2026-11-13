@@ -131,7 +131,7 @@ Release steps (maintainer):
    the `summary.json` from each artifact as `docs/results/<date>-<model>.json`
    and update the tables in `docs/evals.md` from them.
 4. Update `README.md`: the numbers under "What the evals show" (they come from
-   the summaries in `docs/results/`) and the "Status" section.
+   the summaries in `docs/results/`).
 5. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
 
 ## Pinned tools in CI
