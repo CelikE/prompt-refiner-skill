@@ -6,6 +6,11 @@
 # Eval run output (reports, JSON, transcripts)
 evals/results/
 
+# Session transcripts that the eval command writes into the case folders of
+# cases that replay an earlier conversation. Only history.jsonl is a source file.
+evals/*/*.jsonl
+!evals/*/history.jsonl
+
 # Python
 __pycache__/
 *.pyc

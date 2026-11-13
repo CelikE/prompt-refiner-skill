@@ -197,7 +197,8 @@ case("direct-text-edit",
       "deliver-notice": llm("The response is only a revised Danish notice, not instructions for "
                             "rewriting one.", weight=2),
       "preserve-uncertainty": llm("The notice keeps the Friday release tentative and invents no "
-                                  "confirmed date or time.", weight=2)})
+                                  "confirmed date or time.", weight=2)},
+     runs=RISKY)  # Sonnet once put a line about its mode choice before the "only" reply
 
 # ---------- new cases ----------
 

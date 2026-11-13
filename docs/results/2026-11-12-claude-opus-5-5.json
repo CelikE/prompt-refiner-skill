@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-opus-5-5",
   "started_at": "2026-11-12T19:08:02.869Z",
-  "cost_usd": 28.8,
+  "cost_usd": 31.92,
   "partial": false,
   "cases": [
     {
@@ -373,13 +373,13 @@
     },
     {
       "name": "direct-text-edit",
-      "runs": 3,
+      "runs": 10,
       "score": 1.0,
-      "runs_passed": 3,
-      "baseline": 1.0,
-      "delta": 0.0,
-      "format_passed": 3,
-      "format_total": 3,
+      "runs_passed": 10,
+      "baseline": 0.95,
+      "delta": 0.050000000000000044,
+      "format_passed": 10,
+      "format_total": 10,
       "errors": [],
       "graders": [
         {
@@ -387,7 +387,7 @@
           "type": "regex",
           "weight": 3,
           "kind": "format",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": null
         },
         {
@@ -395,35 +395,35 @@
           "type": "regex",
           "weight": 1,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 10
         },
         {
           "name": "03-shorter",
           "type": "regex",
           "weight": 1,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 9
         },
         {
           "name": "04-deliver-notice",
           "type": "llm",
           "weight": 2,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 9
         },
         {
           "name": "05-preserve-uncertainty",
           "type": "llm",
           "weight": 2,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 10
         }
       ],
-      "started_at": "2026-11-13T06:00:06.619Z"
+      "started_at": "2026-11-13T06:18:04.676Z"
     },
     {
       "name": "duplicate-removed",
@@ -701,7 +701,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-13T06:00:15.007Z"
+      "started_at": "2026-11-13T06:15:40.582Z"
     },
     {
       "name": "large-paste",
@@ -1119,7 +1119,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-13T06:02:20.066Z"
+      "started_at": "2026-11-13T06:15:26.438Z"
     },
     {
       "name": "negations-kept",
@@ -1311,7 +1311,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-13T06:02:13.482Z"
+      "started_at": "2026-11-13T06:15:20.246Z"
     },
     {
       "name": "rewrite-fenced-on-request",
@@ -1946,8 +1946,8 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.6666666666666666,
-      "delta": 0.33333333333333337,
+      "baseline": 0.8333333333333334,
+      "delta": 0.16666666666666663,
       "format_passed": 15,
       "format_total": 15,
       "errors": [],
@@ -1966,7 +1966,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 1
+          "passed_without": 2
         },
         {
           "name": "03-preview-once",
@@ -2009,7 +2009,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T06:15:52.826Z"
     }
   ]
 }

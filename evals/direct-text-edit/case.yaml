@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: direct-text-edit
+runs: 10
 expected_outcome: |
   Return a shorter Danish release notice, not a rewritten instruction. Preserve the
   tentative Friday release without inventing a confirmed date or time. Omit the

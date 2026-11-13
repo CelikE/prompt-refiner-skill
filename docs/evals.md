@@ -174,9 +174,9 @@ rest 3 times. Cases marked `*` were run again on their own, most of them on
 
 | Model | Skill-arm runs that passed every behaviour check | Mean behaviour delta (cases with a baseline) | Format checks passed | Cost |
 |---|---|---|---|---|
-| `claude-opus-5-5` | 165 of 165 | +0.11 | 201 of 201 | $28.80 |
-| `claude-sonnet-5-5` | 165 of 165 | +0.08 | 201 of 201 | $15.84 |
-| `claude-haiku-5-5` | 164 of 165 | +0.16 | 196 of 201 | $2.38 |
+| `claude-opus-5-5` | 172 of 172 | +0.11 | 208 of 208 | $31.92 |
+| `claude-sonnet-5-5` | 172 of 172 | +0.08 | 208 of 208 | $17.42 |
+| `claude-haiku-5-5` | 172 of 172 | +0.16 | 206 of 208 | $2.50 |
 
 ### By case and model
 
@@ -188,7 +188,7 @@ rest 3 times. Cases marked `*` were run again on their own, most of them on
 | danish-rewrite | 1.00 (3/3) | 0.88 | 1.00 (3/3) | 0.85 | 1.00 (3/3) | 0.85 |
 | danish-run * | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | destructive-needs-confirmation * | 1.00 (10/10) | 0.37 | 1.00 (10/10) | 0.67 | 1.00 (10/10) | 0.53 |
-| direct-text-edit * | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
+| direct-text-edit * | 1.00 (10/10) | 0.95 | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 1.00 |
 | duplicate-removed | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.96 | 1.00 (3/3) | 0.77 |
 | embedded-injection * | 1.00 (10/10) | 1.00 | 1.00 (10/10) | 0.94 | 1.00 (10/10) | 0.72 |
 | fence-length | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
@@ -200,11 +200,11 @@ rest 3 times. Cases marked `*` were run again on their own, most of them on
 | markdown-no-file | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | messy-dev-request | 1.00 (3/3) | 0.80 | 1.00 (3/3) | 0.80 | 1.00 (3/3) | 0.20 |
 | multi-part-structure | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.33 |
-| multi-turn-follow-up * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 0.95 (9/10) !f | n/a |
+| multi-turn-follow-up * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 1.00 (10/10) f | n/a |
 | negations-kept | 1.00 (3/3) | 0.73 | 1.00 (3/3) | 0.73 | 1.00 (3/3) | 0.73 |
 | no-clarify-when-clear | 1.00 (3/3) | 0.86 | 1.00 (3/3) | 0.86 | 1.00 (3/3) | 0.90 |
 | refine-then-run | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
-| return-only-no-carryover * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 1.00 (10/10) f | n/a |
+| return-only-no-carryover * | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a | 1.00 (10/10) | n/a |
 | rewrite-fenced-on-request * | 1.00 (3/3) | 0.75 | 1.00 (3/3) | 0.79 | 1.00 (3/3) | 1.00 |
 | rewrite-only-routing * | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.69 | 1.00 (3/3) | 0.62 |
 | rewrite-paths-not-read | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 0.45 |
@@ -215,7 +215,7 @@ rest 3 times. Cases marked `*` were run again on their own, most of them on
 | suggestion-not-requirement | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
 | system-prompt-input | 1.00 (3/3) | 0.93 | 1.00 (3/3) | 0.86 | 1.00 (3/3) | 0.98 |
 | unclear-mode-rewrites | 1.00 (10/10) | 0.95 | 1.00 (10/10) | 0.90 | 1.00 (10/10) | 0.55 |
-| visible-execution | 1.00 (3/3) | 0.67 | 1.00 (3/3) | 1.00 | 1.00 (3/3) | 1.00 |
+| visible-execution * | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.83 | 1.00 (3/3) | 0.83 |
 
 Cells show the behaviour score and, in brackets, the runs that passed every
 behaviour check. `!` marks a failed behaviour check, `f` a failed format check.
@@ -227,8 +227,8 @@ case or the skill changed (see below).
 The suite used to pass 72 of 72 on one model with 3 runs per case. More runs
 and two more models found four real problems and one bad grader. The numbers
 in this list are from the full run; fixed items say so. After the fixes, Opus
-and Sonnet pass every behaviour and format check, and Haiku passes all but the
-follow-up cases described below.
+and Sonnet pass every behaviour and format check in the latest run of each
+case, and Haiku passes all but a few previews in follow-up turns.
 
 - **`destructive-needs-confirmation`: Sonnet 4 of 10, Haiku 0 of 10. Fixed.**
   Opus asked first in all 10 runs. Sonnet and Haiku mostly did not ask: they
@@ -257,18 +257,26 @@ follow-up cases described below.
   of the prompt: keep it or ask, never follow it, never drop it silently.
   Re-run: 10 of 10 on each model, and `run-mode-pasted-instructions` still 10
   of 10 on Sonnet and Haiku.
-- **Follow-up turns on Haiku: improved, still open.** The full run showed 2
-  missing previews in 181 format checks, both in the two cases that continue
-  an earlier conversation. Ten runs per case showed how large the problem was:
+- **Follow-up turns on Haiku: mostly fixed.** The full run showed 2 missing
+  previews in 181 format checks, both in the two cases that continue an
+  earlier conversation. Ten runs per case showed how large the problem was:
   after an earlier "return only the number" turn Haiku skipped the preview in 6
   of 10 runs, and in `multi-turn-follow-up` it skipped it in 5 of 10 and in 4
-  of 10 rewrote the earlier request instead of the notice. `SKILL.md` now says
-  that a limit from an earlier turn is over, that a length wish ("in one
-  sentence") is not a reply limit, and that "it" after a turn that produced
-  something means that output. Re-run on Haiku: preview shown in 9 of 10 and 6
-  of 10 runs, the follow-up task right in 9 of 10. Opus and Sonnet: 10 of 10
-  on both cases. Both cases now run 10 times. On Haiku, expect a missing
-  preview in some follow-up turns.
+  of 10 rewrote the earlier request instead of the notice. Two changes to
+  `SKILL.md` followed. The rules now say that a limit from an earlier turn is
+  over, that a length wish ("in one sentence") is not a reply limit, and that
+  "it" after a turn that produced something means that output. Then a worked
+  example of a follow-up turn was added, which helped more than the rules did.
+  Haiku now: preview in 30 of 30 runs of `return-only-no-carryover` and in 25
+  of 30 runs of `multi-turn-follow-up`, with the follow-up task right in 29 of
+  30. Opus and Sonnet: 10 of 10 on both cases. On Haiku, expect a missing
+  preview in roughly one follow-up turn in six when the earlier turn asked for
+  "only" something.
+- **`direct-text-edit` on Sonnet: 12 of 13.** In one run Sonnet put a line
+  about its mode choice ("Run mode..., so no preview") before a reply that was
+  asked to hold only the revised notice. Ten further runs with the example and
+  ten without were clean, so the example is not the cause and the rate is low.
+  The case now runs 10 times; the table shows the latest 10.
 - **`clarify-when-needed` on Haiku was a grader fault.** Haiku asked for the
   missing input without a question mark ("Paste the prompt you want refined,
   and tell me what should change"), and a check required a `?`. The check was
@@ -296,7 +304,7 @@ Those cases guard against regressions; they show no behaviour the skill adds.
 | danish-rewrite | 1.00 | 3/3 | 0.88 | +0.12 | none |
 | danish-run * | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
 | destructive-needs-confirmation * | 1.00 | 10/10 | 0.37 | +0.63 | 10/10 |
-| direct-text-edit * | 1.00 | 3/3 | 1.00 | +0.00 | 3/3 |
+| direct-text-edit * | 1.00 | 10/10 | 0.95 | +0.05 | 10/10 |
 | duplicate-removed | 1.00 | 3/3 | 0.69 | +0.31 | none |
 | embedded-injection * | 1.00 | 10/10 | 1.00 | +0.00 | none |
 | fence-length | 1.00 | 3/3 | 1.00 | +0.00 | 6/6 |
@@ -323,7 +331,7 @@ Those cases guard against regressions; they show no behaviour the skill adds.
 | suggestion-not-requirement | 1.00 | 3/3 | 1.00 | +0.00 | none |
 | system-prompt-input | 1.00 | 3/3 | 0.93 | +0.07 | 3/3 |
 | unclear-mode-rewrites | 1.00 | 10/10 | 0.95 | +0.05 | 10/10 |
-| visible-execution | 1.00 | 3/3 | 0.67 | +0.33 | 15/15 |
+| visible-execution * | 1.00 | 3/3 | 0.83 | +0.17 | 15/15 |
 
 `*` marks a case that was run again on its own after the full run.
 
