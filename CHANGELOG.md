@@ -55,6 +55,9 @@ All notable changes to this project are documented here. The format follows
   failed a reply that plainly explained the rejected password.
 - CI pins what it downloads: GitHub Actions by commit SHA, Claude Code and
   `markdownlint-cli2` by npm version, and the gitleaks tarball by SHA-256.
+- The manual Evals workflow stops with a clear error when the
+  `ANTHROPIC_API_KEY` secret is missing, skips the transcript and summary
+  steps when the run produced nothing, and passes `--no-publish`.
 - The manual Evals workflow takes a `model` input and uses each case's own run
   count unless `runs` is set.
 
