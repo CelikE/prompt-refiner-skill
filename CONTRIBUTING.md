@@ -130,7 +130,9 @@ Release steps (maintainer):
 3. Run the "Evals" workflow once per model (`opus`, `sonnet`, `haiku`). Commit
    the `summary.json` from each artifact as `docs/results/<date>-<model>.json`
    and update the tables in `docs/evals.md` from them.
-4. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
+4. Update `README.md`: the numbers under "What the evals show" (they come from
+   the summaries in `docs/results/`) and the "Status" section.
+5. Tag `vX.Y.Z` and publish a GitHub Release with the changelog section as notes.
 
 ## Pinned tools in CI
 
