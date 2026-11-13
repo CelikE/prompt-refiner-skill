@@ -10,7 +10,7 @@
       "name": "prompt-refiner",
       "source": "./",
       "description": "Refine a rough request without changing its meaning, then carry it out.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

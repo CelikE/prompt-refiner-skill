@@ -230,15 +230,6 @@ More in [docs/examples.md](docs/examples.md).
 - Every token counts. The skill is about 1,200 words that the model reads on
   each call.
 
-## Status
-
-The latest release is 0.1.0. `main` has moved on since then, and a manual
-install from a clone follows `main`. The main differences: Rewrite mode replies
-with a code block instead of plain text, the agent asks before a destructive
-step on all three models, and a prompt you ask to improve is no longer carried
-out when it reads like a task. [CHANGELOG.md](CHANGELOG.md) lists everything
-under "Unreleased".
-
 ## Contributing
 
 Issues and pull requests are welcome. A misrefinement report (input, expected,

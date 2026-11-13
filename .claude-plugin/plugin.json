@@ -1,6 +1,6 @@
 {
   "name": "prompt-refiner",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Refine a rough request without changing its meaning, show it as \"Prompt used\", then carry it out. Rewrite-only mode for improving prompts.",
   "author": {
     "name": "Emil Celik",

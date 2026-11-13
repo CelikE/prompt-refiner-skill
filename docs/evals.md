@@ -175,7 +175,7 @@ bearer token and a connection-string password). Contributions welcome.
 ## Results
 
 Full run on 2026-11-12 with Claude Code 2.1.322 on three models, with the
-skill as it was on `main` after 0.1.0. Risky cases ran 10 times per arm, the
+skill as it was on `main` after 0.1.0 (released as 0.2.0). Risky cases ran 10 times per arm, the
 rest 3 times. Cases marked `*` were run again on their own, most of them on
 2026-11-13 with Claude Code 2.1.323, after a change to the case or to
 `SKILL.md`; the tables show the latest run of each case. Summaries with the pass count of every grader are in
