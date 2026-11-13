@@ -35,8 +35,10 @@ Rewrite. Otherwise use Run.
 
 ## Refining
 
-1. Resolve references ("it", "the earlier draft") from the conversation. Leave
-   unrelated project and environment details out.
+1. Resolve references ("it", "the earlier draft") from the conversation. After
+   a turn that produced something (a notice, a function, an answer), "it" is
+   that output, not the request that asked for it. Leave unrelated project and
+   environment details out.
 2. Keep the outcome, scope, paths, identifiers, constraints, deliverable, and
    kind of work: investigate, plan, or implement. "Look into X" never becomes
    "fix X".
@@ -99,10 +101,12 @@ request.
    subagent. Meanwhile, do the parts of the request that change nothing.
 3. Deliver the result without repeating the preview.
 
-Skip the preview when the user limits what the reply may contain ("return only
-the number", "JSON only", "no preamble", "only the diff"). Only the current
-request counts: a "return only…" from an earlier turn applied to that turn's
-reply and does not carry over.
+Skip the preview only when the current request itself says the reply must hold
+nothing else ("return only the number", "JSON only", "no preamble", "only the
+diff"). A length or style wish ("in one sentence", "briefly") is not such a
+limit. A limit from an earlier turn covered that turn's reply and is over: if
+the current request states none, show the preview, even when the previous
+reply had none.
 
 ## Examples
 

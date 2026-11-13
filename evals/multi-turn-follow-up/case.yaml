@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: multi-turn-follow-up
+runs: 10
 expected_outcome: |
   "it" only exists in the resumed earlier turn (the English release notice).
   Resolve it from history: the preview names the notice instead of asking what

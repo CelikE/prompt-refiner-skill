@@ -1,7 +1,6 @@
 ---
-type: "llm"
-focus: "last_message"
+type: "regex"
+pattern: "\\b(betyder|fordi|konflikt\\w*|foresp\u00f8rgs\\w*|anmodning\\w*)\\b"
+flags: "i"
 weight: 3
 ---
-
-The explanation of HTTP 409 is written in Danish, not English.

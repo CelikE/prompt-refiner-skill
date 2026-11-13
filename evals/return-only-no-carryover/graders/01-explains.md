@@ -1,7 +1,6 @@
 ---
-type: "llm"
-focus: "last_message"
+type: "regex"
+pattern: "(multipl\\w*|times|6\\s*[\u00d7x*]\\s*7|added|adding|groups of)"
+flags: "i"
 weight: 2
 ---
-
-The response explains in about one sentence how 6 * 7 = 42 was obtained.

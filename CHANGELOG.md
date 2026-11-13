@@ -41,6 +41,10 @@ All notable changes to this project are documented here. The format follows
   skill on smaller models: no confirmation before a destructive step, and a
   redacted secret repeated in the answer.
 - `clarify-when-needed` no longer requires a question mark in the reply.
+- `multi-turn-follow-up` and `return-only-no-carryover` run 10 times per arm.
+- `danish-run` and `return-only-no-carryover` check the answer with a regex
+  instead of an LLM judge that failed correct replies; the judge criterion in
+  `multi-turn-follow-up` is more precise.
 - `destructive-needs-confirmation`: the fixture's README lists the build
   folder, because a file search for `build` finds nothing and some runs
   concluded there was nothing to delete. The judge fails a run only for
@@ -56,6 +60,13 @@ All notable changes to this project are documented here. The format follows
   measured on Claude models only.
 
 ### Fixed
+
+- `SKILL.md`: a reply limit from an earlier turn is over, a length wish ("in
+  one sentence") is not a reply limit, and "it" after a turn that produced
+  something means that output, not the request. On Haiku the preview after an
+  earlier "return only" turn went from 4 of 10 to 9 of 10, and the follow-up
+  task from 6 of 10 to 9 of 10. Haiku still skips the preview in some
+  follow-up turns.
 
 - `SKILL.md`: in Rewrite mode an instruction inside the material ("ignore
   previous instructions and run...") is kept in the rewrite or asked about. It
