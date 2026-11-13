@@ -126,8 +126,9 @@ def merge(old, new):
         sys.exit(f"error: --update mixes models: {old['model']} and {new['model']}")
     rerun = {r["name"]: r for r in new["cases"]}
     cases = [rerun.pop(r["name"], r) for r in old["cases"]] + list(rerun.values())
-    return {**old, "cost_usd": round(old["cost_usd"] + new["cost_usd"], 2),
-            "partial": old["partial"] or new["partial"],
+    # cost_usd stays the cost of the full run: partial re-runs are merged in any
+    # number of times, so adding their cost would count some of them twice.
+    return {**old, "partial": old["partial"] or new["partial"],
             "cases": sorted(cases, key=lambda r: r["name"])}
 
 

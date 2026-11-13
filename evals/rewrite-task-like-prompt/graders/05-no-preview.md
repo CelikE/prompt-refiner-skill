@@ -1,7 +1,7 @@
 ---
 type: "regex"
-pattern: "```"
+pattern: "Prompt used"
 match: "not_contains"
-weight: 1
+weight: 3
 arm: "with-only"
 ---

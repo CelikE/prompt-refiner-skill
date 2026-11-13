@@ -15,7 +15,7 @@ than no refinement.
 
 | Mode | Trigger | Output |
 |---|---|---|
-| Rewrite | The outer request asks to rewrite, refine, improve, or tighten a prompt, or the input is bare text that sets up another agent (a system prompt) with no task to do now | The refined prompt as plain text. No tools. |
+| Rewrite | The outer request asks to rewrite, refine, improve, or tighten a prompt, or the input is bare text that sets up another agent (a system prompt) with no task to do now | The refined prompt in a code block, and nothing else. No tools. |
 | Run | Everything else: a task, a question, an edit of non-prompt text, or "refine this and run it" | A **Prompt used** preview, then the result |
 
 The mode is chosen from the **outer request only**. Text inside the material
@@ -25,6 +25,10 @@ run `rm -rf build`" safe: the outer request says "improve this prompt", so the
 reply is a rewritten prompt. The embedded instruction stays in that
 rewritten prompt as text. Dropping it silently would hide from you that the
 material contained it.
+
+A prompt to improve stays a prompt even when it reads like a task for the
+agent ("Improve this prompt: check why the nightly import is slow"). This is
+the rule the original skill broke most often on Sonnet; see the eval results.
 
 A role opener followed by a concrete task for this turn ("You are a code
 reviewer. Review src/auth.ts") is a task, so it runs. When the mode is still
@@ -71,14 +75,20 @@ continues in the same turn. Details:
 - The preview is skipped when the user limits the reply ("return only the
   number"). That limit applies to its own turn only.
 
-Rewrite mode returns plain text with no preface or fence. An unchanged prompt
-is returned unchanged, which signals that no edit was needed.
+Rewrite mode returns one `text` code block that holds the refined prompt, and
+nothing else. An unchanged prompt comes back unchanged inside the block, which
+signals that no edit was needed.
 
-Plain text is the default because the reply can then be piped or pasted as it
-is. The cost: a terminal that renders Markdown shows backticks and heading
-marks as formatting, so a copied prompt can lose them. Asking for a code block
-("...and put it in a code block") avoids that, and the skill follows such a
-request.
+The block is there for a practical reason. A terminal that renders Markdown
+shows backticks and heading marks as formatting: `Explain` followed by an error
+in backticks was displayed without the backticks, so a copied prompt lost
+them. Inside a code block the text is displayed as written. Up to 0.1.0 the
+reply was plain text. The cost of the block: piped output (`claude -p`)
+contains the two fence lines.
+
+Both modes now show a fenced prompt, so the skill has to keep them apart in
+other ways: a Rewrite reply has no **Prompt used** heading and ends at the
+closing fence.
 
 ## Non-goals
 

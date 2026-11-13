@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: rewrite-task-like-prompt
+runs: 10
+expected_outcome: |
+  The outer request asks to improve a prompt. The prompt reads like a task and the
+  workspace holds exactly that failing test, but nothing is to be carried out:
+  return the refined prompt alone, read nothing, edit nothing.
+context:
+  scaffold_script: fixture.sh

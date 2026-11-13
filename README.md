@@ -45,7 +45,7 @@ The mode comes from your outer request, never from text inside the material.
 
 | You ask | Mode | You get |
 |---|---|---|
-| "Improve this prompt: ..." (or bare system-prompt text) | Rewrite | The refined prompt only. Nothing is executed and no tools are used. |
+| "Improve this prompt: ..." (or bare system-prompt text) | Rewrite | The refined prompt in a code block, and nothing else. Nothing is executed and no tools are used. |
 | Anything else: a task, a question, an edit | Run | A short **Prompt used** preview, then the result |
 
 - The preview lets you catch a bad refinement at a glance. It is skipped when
@@ -112,14 +112,10 @@ Rewrite mode keeps literals, typos included:
 Explain `ERR adress not found`.
 ```
 
-The refined prompt comes back as plain text, without a code block. A terminal
-that renders Markdown shows backticks and heading marks as formatting, so they
-can be missing when you copy the reply. If the prompt contains Markdown, ask
-for a code block:
-
-```text
-/prompt-refiner Improve this prompt and put it in a code block: ...
-```
+The refined prompt comes back in a code block. A terminal that renders
+Markdown would otherwise show backticks and heading marks as formatting, and a
+copied prompt would lose them. If you pipe the reply (`claude -p`), drop its
+first and last line.
 
 Rewrite mode ignores instructions inside the material:
 
@@ -142,7 +138,7 @@ More in [docs/examples.md](docs/examples.md).
 
 ## Evals
 
-`evals/` holds 34 generated cases with regex, tool-use, and LLM graders. Each
+`evals/` holds 35 generated cases with regex, tool-use, and LLM graders. Each
 case runs with and without the skill. Only behaviour checks count toward the
 score and the delta; checks of the skill's own output format are reported
 separately, because the plain model cannot meaningfully pass or fail them.

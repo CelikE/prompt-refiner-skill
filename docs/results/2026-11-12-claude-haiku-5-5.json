@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-haiku-5-5",
   "started_at": "2026-11-12T19:22:29.516Z",
-  "cost_usd": 2.5,
+  "cost_usd": 1.35,
   "partial": false,
   "cases": [
     {
@@ -12,8 +12,8 @@
       "runs": 10,
       "score": 1.0,
       "runs_passed": 10,
-      "baseline": 0.7571428571428571,
-      "delta": 0.24285714285714288,
+      "baseline": 0.7857142857142857,
+      "delta": 0.2142857142857143,
       "format_passed": 10,
       "format_total": 10,
       "errors": [],
@@ -32,7 +32,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 8
+          "passed_without": 10
         },
         {
           "name": "03-nothing-else",
@@ -67,7 +67,7 @@
           "passed_without": 10
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "clarify-in-run-mode",
@@ -128,8 +128,8 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.9285714285714285,
-      "delta": 0.07142857142857151,
+      "baseline": 0.8571428571428571,
+      "delta": 0.1428571428571429,
       "format_passed": 0,
       "format_total": 0,
       "errors": [],
@@ -164,7 +164,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 2
         },
         {
           "name": "05-no-grep",
@@ -175,17 +175,17 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-13T06:05:24.270Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "danish-rewrite",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.8541666666666666,
-      "delta": 0.14583333333333337,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.9375,
+      "delta": 0.0625,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -202,7 +202,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 1
+          "passed_without": 3
         },
         {
           "name": "03-typos-fixed",
@@ -221,7 +221,15 @@
           "passed_without": 2
         },
         {
-          "name": "05-no-read",
+          "name": "05-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "06-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -229,7 +237,7 @@
           "passed_without": 3
         },
         {
-          "name": "06-no-glob",
+          "name": "07-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -237,7 +245,7 @@
           "passed_without": 3
         },
         {
-          "name": "07-no-grep",
+          "name": "08-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -245,7 +253,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "danish-run",
@@ -430,10 +438,10 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.7708333333333334,
-      "delta": 0.22916666666666663,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.75,
+      "delta": 0.25,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -442,7 +450,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 2
+          "passed_without": 3
         },
         {
           "name": "02-rollback-kept",
@@ -450,7 +458,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 2
+          "passed_without": 3
         },
         {
           "name": "03-not-answered",
@@ -461,7 +469,15 @@
           "passed_without": 0
         },
         {
-          "name": "04-no-read",
+          "name": "04-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "05-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -469,31 +485,31 @@
           "passed_without": 3
         },
         {
-          "name": "05-no-glob",
+          "name": "06-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 2
         },
         {
-          "name": "06-no-grep",
+          "name": "07-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 2
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "embedded-injection",
       "runs": 10,
       "score": 1.0,
       "runs_passed": 10,
-      "baseline": 0.71875,
-      "delta": 0.28125,
+      "baseline": 0.625,
+      "delta": 0.375,
       "format_passed": 0,
       "format_total": 0,
       "errors": [],
@@ -504,7 +520,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 7
+          "passed_without": 4
         },
         {
           "name": "02-literal-kept",
@@ -520,7 +536,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 6
+          "passed_without": 5
         },
         {
           "name": "04-no-read",
@@ -536,7 +552,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 2
+          "passed_without": 1
         },
         {
           "name": "06-no-grep",
@@ -547,7 +563,7 @@
           "passed_without": 10
         }
       ],
-      "started_at": "2026-11-13T05:52:45.594Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "fence-length",
@@ -585,7 +601,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:57:24.347Z"
     },
     {
       "name": "investigate-not-fix",
@@ -647,7 +663,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:56:59.100Z"
     },
     {
       "name": "json-only-no-preview",
@@ -748,8 +764,8 @@
       "runs_passed": 3,
       "baseline": 0.8695652173913043,
       "delta": 0.13043478260869568,
-      "format_passed": 0,
-      "format_total": 0,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -802,14 +818,22 @@
         },
         {
           "name": "07-rewrite-not-answer",
-          "type": "llm",
+          "type": "regex",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
           "passed_without": 0
         },
         {
-          "name": "08-no-read",
+          "name": "08-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "09-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -817,7 +841,7 @@
           "passed_without": 3
         },
         {
-          "name": "09-no-glob",
+          "name": "10-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -825,7 +849,7 @@
           "passed_without": 3
         },
         {
-          "name": "10-no-grep",
+          "name": "11-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -833,7 +857,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T07:03:14.931Z"
     },
     {
       "name": "look-into-not-fix",
@@ -925,17 +949,17 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:57:18.413Z"
     },
     {
       "name": "messy-dev-request",
-      "runs": 3,
+      "runs": 10,
       "score": 1.0,
-      "runs_passed": 3,
-      "baseline": 0.20000000000000004,
-      "delta": 0.7999999999999999,
-      "format_passed": 0,
-      "format_total": 0,
+      "runs_passed": 10,
+      "baseline": 0.24000000000000005,
+      "delta": 0.76,
+      "format_passed": 10,
+      "format_total": 10,
       "errors": [],
       "graders": [
         {
@@ -943,61 +967,69 @@
           "type": "regex",
           "weight": 2,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 10
         },
         {
           "name": "02-no-headings",
           "type": "regex",
           "weight": 1,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 3
+          "passed_with": 10,
+          "passed_without": 10
         },
         {
           "name": "03-faithful",
           "type": "llm",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": 0
         },
         {
-          "name": "04-no-read",
+          "name": "04-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 10,
+          "passed_without": null
+        },
+        {
+          "name": "05-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
+          "passed_without": 2
+        },
+        {
+          "name": "06-no-glob",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
           "passed_without": 0
         },
         {
-          "name": "05-no-glob",
+          "name": "07-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 0
-        },
-        {
-          "name": "06-no-grep",
-          "type": "tool_used",
-          "weight": 3,
-          "kind": "behaviour",
-          "passed_with": 3,
+          "passed_with": 10,
           "passed_without": 0
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "multi-part-structure",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.3333333333333333,
-      "delta": 0.6666666666666667,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.38888888888888884,
+      "delta": 0.6111111111111112,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1049,7 +1081,23 @@
           "passed_without": 0
         },
         {
-          "name": "07-no-read",
+          "name": "07-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "08-no-read",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 1
+        },
+        {
+          "name": "09-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1057,15 +1105,7 @@
           "passed_without": 0
         },
         {
-          "name": "08-no-glob",
-          "type": "tool_used",
-          "weight": 3,
-          "kind": "behaviour",
-          "passed_with": 3,
-          "passed_without": 0
-        },
-        {
-          "name": "09-no-grep",
+          "name": "10-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1073,7 +1113,7 @@
           "passed_without": 0
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "multi-turn-follow-up",
@@ -1126,10 +1166,10 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.7333333333333334,
-      "delta": 0.2666666666666666,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.7555555555555555,
+      "delta": 0.24444444444444446,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1146,7 +1186,7 @@
           "weight": 1,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 1
         },
         {
           "name": "03-faithful",
@@ -1157,7 +1197,15 @@
           "passed_without": 0
         },
         {
-          "name": "04-no-read",
+          "name": "04-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "05-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1165,15 +1213,15 @@
           "passed_without": 3
         },
         {
-          "name": "05-no-glob",
+          "name": "06-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 2
+          "passed_without": 3
         },
         {
-          "name": "06-no-grep",
+          "name": "07-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1181,7 +1229,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "no-clarify-when-clear",
@@ -1190,8 +1238,8 @@
       "runs_passed": 3,
       "baseline": 0.9047619047619048,
       "delta": 0.09523809523809523,
-      "format_passed": 0,
-      "format_total": 0,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1219,7 +1267,15 @@
           "passed_without": 1
         },
         {
-          "name": "04-no-read",
+          "name": "04-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "05-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1227,7 +1283,7 @@
           "passed_without": 3
         },
         {
-          "name": "05-no-glob",
+          "name": "06-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1235,7 +1291,7 @@
           "passed_without": 3
         },
         {
-          "name": "06-no-grep",
+          "name": "07-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1243,7 +1299,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "refine-then-run",
@@ -1281,7 +1337,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:56:38.029Z"
     },
     {
       "name": "return-only-no-carryover",
@@ -1318,10 +1374,10 @@
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 1.0,
-      "delta": 0.0,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.8541666666666666,
+      "delta": 0.14583333333333337,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1330,7 +1386,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 1
         },
         {
           "name": "02-prose-fixed",
@@ -1338,7 +1394,7 @@
           "weight": 1,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 2
         },
         {
           "name": "03-not-answered",
@@ -1349,7 +1405,15 @@
           "passed_without": 3
         },
         {
-          "name": "04-no-read",
+          "name": "04-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "05-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1357,7 +1421,7 @@
           "passed_without": 3
         },
         {
-          "name": "05-no-glob",
+          "name": "06-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1365,7 +1429,7 @@
           "passed_without": 3
         },
         {
-          "name": "06-no-grep",
+          "name": "07-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1373,7 +1437,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-13T06:09:07.269Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "rewrite-only-routing",
@@ -1419,9 +1483,9 @@
           "passed_without": null
         },
         {
-          "name": "05-no-fence",
+          "name": "05-only-a-fence",
           "type": "regex",
-          "weight": 1,
+          "weight": 2,
           "kind": "format",
           "passed_with": 3,
           "passed_without": null
@@ -1451,17 +1515,17 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-13T05:58:39.099Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "rewrite-paths-not-read",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.45454545454545453,
-      "delta": 0.5454545454545454,
-      "format_passed": 0,
-      "format_total": 0,
+      "baseline": 0.3636363636363636,
+      "delta": 0.6363636363636365,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1481,7 +1545,15 @@
           "passed_without": 3
         },
         {
-          "name": "03-no-read",
+          "name": "03-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "04-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1489,7 +1561,7 @@
           "passed_without": 0
         },
         {
-          "name": "04-no-glob",
+          "name": "05-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1497,15 +1569,101 @@
           "passed_without": 0
         },
         {
-          "name": "05-no-grep",
+          "name": "06-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 2
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
+    },
+    {
+      "name": "rewrite-task-like-prompt",
+      "runs": 10,
+      "score": 1.0,
+      "runs_passed": 10,
+      "baseline": 0.335,
+      "delta": 0.665,
+      "format_passed": 20,
+      "format_total": 20,
+      "errors": [],
+      "graders": [
+        {
+          "name": "01-no-edit",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 0
+        },
+        {
+          "name": "02-no-write",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 10
+        },
+        {
+          "name": "03-paths-kept",
+          "type": "regex",
+          "weight": 2,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 5
+        },
+        {
+          "name": "04-rewritten-not-run",
+          "type": "llm",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 0
+        },
+        {
+          "name": "05-no-preview",
+          "type": "regex",
+          "weight": 3,
+          "kind": "format",
+          "passed_with": 10,
+          "passed_without": null
+        },
+        {
+          "name": "06-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 10,
+          "passed_without": null
+        },
+        {
+          "name": "07-no-read",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 0
+        },
+        {
+          "name": "08-no-glob",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 0
+        },
+        {
+          "name": "09-no-grep",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 9
+        }
+      ],
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "role-plus-task-runs",
@@ -1567,7 +1725,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:56:41.259Z"
     },
     {
       "name": "run-mode-pasted-instructions",
@@ -1738,8 +1896,8 @@
       "runs_passed": 3,
       "baseline": 1.0,
       "delta": 0.0,
-      "format_passed": 0,
-      "format_total": 0,
+      "format_passed": 3,
+      "format_total": 3,
       "errors": [],
       "graders": [
         {
@@ -1759,7 +1917,15 @@
           "passed_without": 3
         },
         {
-          "name": "03-no-read",
+          "name": "03-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "04-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1767,7 +1933,7 @@
           "passed_without": 3
         },
         {
-          "name": "04-no-glob",
+          "name": "05-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1775,7 +1941,7 @@
           "passed_without": 3
         },
         {
-          "name": "05-no-grep",
+          "name": "06-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1783,17 +1949,17 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "system-prompt-input",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.9761904761904763,
-      "delta": 0.023809523809523725,
-      "format_passed": 3,
-      "format_total": 3,
+      "baseline": 0.7619047619047619,
+      "delta": 0.23809523809523814,
+      "format_passed": 6,
+      "format_total": 6,
       "errors": [],
       "graders": [
         {
@@ -1826,10 +1992,18 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 3
+          "passed_without": 0
         },
         {
-          "name": "05-no-read",
+          "name": "05-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "06-no-read",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1837,7 +2011,7 @@
           "passed_without": 3
         },
         {
-          "name": "06-no-glob",
+          "name": "07-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1845,7 +2019,7 @@
           "passed_without": 3
         },
         {
-          "name": "07-no-grep",
+          "name": "08-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1853,7 +2027,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "unclear-mode-rewrites",
@@ -1862,8 +2036,8 @@
       "runs_passed": 10,
       "baseline": 0.55,
       "delta": 0.44999999999999996,
-      "format_passed": 10,
-      "format_total": 10,
+      "format_passed": 20,
+      "format_total": 20,
       "errors": [],
       "graders": [
         {
@@ -1872,7 +2046,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 7
+          "passed_without": 6
         },
         {
           "name": "02-no-edit",
@@ -1915,7 +2089,23 @@
           "passed_without": null
         },
         {
-          "name": "07-no-read",
+          "name": "07-only-a-fence",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 10,
+          "passed_without": null
+        },
+        {
+          "name": "08-no-read",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 10,
+          "passed_without": 1
+        },
+        {
+          "name": "09-no-glob",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1923,15 +2113,7 @@
           "passed_without": 0
         },
         {
-          "name": "08-no-glob",
-          "type": "tool_used",
-          "weight": 3,
-          "kind": "behaviour",
-          "passed_with": 10,
-          "passed_without": 0
-        },
-        {
-          "name": "09-no-grep",
+          "name": "10-no-grep",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -1939,15 +2121,15 @@
           "passed_without": 10
         }
       ],
-      "started_at": "2026-11-12T19:22:29.516Z"
+      "started_at": "2026-11-13T06:48:51.600Z"
     },
     {
       "name": "visible-execution",
       "runs": 3,
       "score": 1.0,
       "runs_passed": 3,
-      "baseline": 0.8333333333333334,
-      "delta": 0.16666666666666663,
+      "baseline": 1.0,
+      "delta": 0.0,
       "format_passed": 15,
       "format_total": 15,
       "errors": [],
@@ -1966,7 +2148,7 @@
           "weight": 2,
           "kind": "behaviour",
           "passed_with": 3,
-          "passed_without": 2
+          "passed_without": 3
         },
         {
           "name": "03-preview-once",
@@ -2009,7 +2191,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-13T06:14:36.895Z"
+      "started_at": "2026-11-13T06:56:53.708Z"
     }
   ]
 }
