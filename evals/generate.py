@@ -276,6 +276,21 @@ case("clarify-when-needed",
                               "speculative rewritten prompt.", weight=3),
       **NO_READ})
 
+case("clarify-in-run-mode",
+     P + "fix it",
+     "Run mode, but there is no earlier turn and nothing says what \"it\" is or what\n"
+     "is wrong. Ask for the missing information and stop: no preview of a request\n"
+     "that cannot be understood, no edits, no guessed fix.",
+     {"no-edit": no_tool("Edit"),
+      "no-write": no_tool("Write"),
+      "asks": llm("The response asks what should be fixed (what \"it\" refers to, or what the problem is). "
+                  "It does not claim to have fixed anything and does not present a guessed fix.", weight=3),
+      "no-preview": fmt(rx(r"Prompt used", match="not_contains", weight=2)),
+      "question-only": fmt(llm("The response consists only of a short request for the missing information "
+                               "(one or two sentences or a short list of options). It contains no refined "
+                               "prompt and no other content.", weight=2))},
+     tools=RO + ["Edit", "Write"])
+
 case("no-clarify-when-clear",
      P + "Improve this prompt: write a short readme intro for a cli tool called tidy that removes empty folders",
      "The request is clear enough. Return a refined prompt without asking questions.",

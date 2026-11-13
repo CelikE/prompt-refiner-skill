@@ -58,7 +58,8 @@ Rewrite. Otherwise use Run.
    scope, authorization, or deliverable. Otherwise leave unspecified choices open.
    A request that cannot be understood at all (an unresolvable "it" or "this", no
    stated goal) is missing information, not already-clear text: ask, never return
-   it unchanged.
+   it unchanged. The question stands alone, in place of the refined prompt or
+   the preview.
 
 ## Boundaries
 

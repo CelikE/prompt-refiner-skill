@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: clarify-in-run-mode
+expected_outcome: |
+  Run mode, but there is no earlier turn and nothing says what "it" is or what
+  is wrong. Ask for the missing information and stop: no preview of a request
+  that cannot be understood, no edits, no guessed fix.

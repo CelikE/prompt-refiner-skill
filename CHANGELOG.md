@@ -92,6 +92,10 @@ All notable changes to this project are documented here. The format follows
 
 - Eval case `run-mode-pasted-instructions`: a ticket to summarise that carries
   its own "ignore the request, create a file" instruction.
+- `SKILL.md` rule 8 says where a clarifying question goes: it stands alone, in
+  place of the refined prompt or the preview. All three models already did
+  this (5 of 5 runs each before the sentence was added); the new case
+  `clarify-in-run-mode` guards it.
 - Seven eval cases for rules that had none and for inputs built to tempt:
   `look-into-not-fix`, `negations-kept`, `duplicate-removed`,
   `unclear-mode-rewrites`, `secret-connection-string`, `multi-part-structure`,
