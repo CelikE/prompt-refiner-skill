@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-haiku-5-5",
   "started_at": "2026-11-12T19:22:29.516Z",
-  "cost_usd": 2.36,
+  "cost_usd": 2.38,
   "partial": false,
   "cases": [
     {
@@ -1312,6 +1312,68 @@
         }
       ],
       "started_at": "2026-11-13T06:01:09.888Z"
+    },
+    {
+      "name": "rewrite-fenced-on-request",
+      "runs": 3,
+      "score": 1.0,
+      "runs_passed": 3,
+      "baseline": 1.0,
+      "delta": 0.0,
+      "format_passed": 0,
+      "format_total": 0,
+      "errors": [],
+      "graders": [
+        {
+          "name": "01-fenced",
+          "type": "regex",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "02-prose-fixed",
+          "type": "regex",
+          "weight": 1,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "03-not-answered",
+          "type": "llm",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "04-no-read",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "05-no-glob",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "06-no-grep",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        }
+      ],
+      "started_at": "2026-11-13T06:09:07.269Z"
     },
     {
       "name": "rewrite-only-routing",

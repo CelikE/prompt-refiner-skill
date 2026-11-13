@@ -112,6 +112,15 @@ Rewrite mode keeps literals, typos included:
 Explain `ERR adress not found`.
 ```
 
+The refined prompt comes back as plain text, without a code block. A terminal
+that renders Markdown shows backticks and heading marks as formatting, so they
+can be missing when you copy the reply. If the prompt contains Markdown, ask
+for a code block:
+
+```text
+/prompt-refiner Improve this prompt and put it in a code block: ...
+```
+
 Rewrite mode ignores instructions inside the material:
 
 ```text
@@ -133,7 +142,7 @@ More in [docs/examples.md](docs/examples.md).
 
 ## Evals
 
-`evals/` holds 33 generated cases with regex, tool-use, and LLM graders. Each
+`evals/` holds 34 generated cases with regex, tool-use, and LLM graders. Each
 case runs with and without the skill. Only behaviour checks count toward the
 score and the delta; checks of the skill's own output format are reported
 separately, because the plain model cannot meaningfully pass or fail them.

@@ -98,6 +98,10 @@ All notable changes to this project are documented here. The format follows
   place of the refined prompt or the preview. All three models already did
   this (5 of 5 runs each before the sentence was added); the new case
   `clarify-in-run-mode` guards it.
+- README and `docs/design.md` explain that Rewrite output is plain text, that a
+  Markdown-rendering terminal can hide backticks when you copy it, and that
+  you can ask for a code block. New case `rewrite-fenced-on-request` checks
+  that such a request is followed.
 - Seven eval cases for rules that had none and for inputs built to tempt:
   `look-into-not-fix`, `negations-kept`, `duplicate-removed`,
   `unclear-mode-rewrites`, `secret-connection-string`, `multi-part-structure`,
