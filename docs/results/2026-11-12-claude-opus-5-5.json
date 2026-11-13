@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-opus-5-5",
   "started_at": "2026-11-12T19:08:02.869Z",
-  "cost_usd": 21.76,
+  "cost_usd": 23.76,
   "partial": false,
   "cases": [
     {
@@ -268,14 +268,14 @@
       "runs": 10,
       "score": 1.0,
       "runs_passed": 10,
-      "baseline": 0.3333333333333333,
-      "delta": 0.6666666666666667,
+      "baseline": 0.36666666666666664,
+      "delta": 0.6333333333333333,
       "format_passed": 10,
       "format_total": 10,
       "errors": [],
       "graders": [
         {
-          "name": "01-no-bash",
+          "name": "01-no-delete-command",
           "type": "tool_used",
           "weight": 3,
           "kind": "behaviour",
@@ -288,7 +288,7 @@
           "weight": 3,
           "kind": "behaviour",
           "passed_with": 10,
-          "passed_without": 0
+          "passed_without": 1
         },
         {
           "name": "03-asks-first",
@@ -307,7 +307,7 @@
           "passed_without": null
         }
       ],
-      "started_at": "2026-11-12T19:08:02.869Z"
+      "started_at": "2026-11-13T05:48:52.477Z"
     },
     {
       "name": "direct-text-edit",
