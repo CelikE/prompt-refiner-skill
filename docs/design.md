@@ -42,7 +42,7 @@ option with no side effects.
 | Fix spelling and grammar, remove only exact duplicates | Silently dropping content that looked like noise |
 | Plain wording in the original language, nothing invented | Expert personas, new deadlines or metrics, translating a Danish request to English |
 | Structure only when the request has several parts | A one-line request coming back as a document with headings |
-| Ask only when the goal, scope, authorization, or deliverable is unclear | Endless clarifying questions, or a guessed rewrite of "update it" |
+| Ask only when the goal, scope, authorization, or deliverable is unclear; the question replaces the prompt or the preview | Endless clarifying questions, a guessed rewrite of "update it", or a question buried under a preview |
 
 ## Safety rules
 

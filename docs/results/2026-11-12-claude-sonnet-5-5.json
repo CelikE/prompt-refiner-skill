@@ -4,7 +4,7 @@
   "claude_version": "2.1.322",
   "model": "claude-sonnet-5-5",
   "started_at": "2026-11-12T19:16:03.309Z",
-  "cost_usd": 15.31,
+  "cost_usd": 15.66,
   "partial": false,
   "cases": [
     {
@@ -70,6 +70,60 @@
       "started_at": "2026-11-12T19:16:03.309Z"
     },
     {
+      "name": "clarify-in-run-mode",
+      "runs": 3,
+      "score": 1.0,
+      "runs_passed": 3,
+      "baseline": 1.0,
+      "delta": 0.0,
+      "format_passed": 6,
+      "format_total": 6,
+      "errors": [],
+      "graders": [
+        {
+          "name": "01-no-edit",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "02-no-write",
+          "type": "tool_used",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "03-asks",
+          "type": "llm",
+          "weight": 3,
+          "kind": "behaviour",
+          "passed_with": 3,
+          "passed_without": 3
+        },
+        {
+          "name": "04-no-preview",
+          "type": "regex",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        },
+        {
+          "name": "05-question-only",
+          "type": "llm",
+          "weight": 2,
+          "kind": "format",
+          "passed_with": 3,
+          "passed_without": null
+        }
+      ],
+      "started_at": "2026-11-13T06:05:37.290Z"
+    },
+    {
       "name": "clarify-when-needed",
       "runs": 3,
       "score": 1.0,
@@ -121,7 +175,7 @@
           "passed_without": 3
         }
       ],
-      "started_at": "2026-11-12T19:30:46.287Z"
+      "started_at": "2026-11-13T06:05:44.885Z"
     },
     {
       "name": "danish-rewrite",
